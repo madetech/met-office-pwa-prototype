@@ -1,9 +1,9 @@
-## Running the App Locally
-
-Requirements:
+## Requirements
 
 * Node >= 12.22.0
 * NPM
+
+## Running the App Locally
 
 Clone the repository:
 
@@ -23,7 +23,7 @@ Install dependencies:
 npm i
 ```
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -33,13 +33,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Running Tests
 
-Watch mode:
+In watch mode:
 
 ```bash
 npm run test
 ```
 
-## Running Production Build
+Run all tests:
+
+```bash
+npm run test:ci
+```
+
+## Running Production Build Locally
 
 You can run the production build locally
 
