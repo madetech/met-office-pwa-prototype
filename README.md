@@ -11,6 +11,12 @@ Clone the repository:
 git clone git@github.com:JohnFarrellDev/met-office-demo.git
 ```
 
+Go into the project:
+
+```bash
+cd met-office-demo
+```
+
 Install dependencies:
 
 ```bash
@@ -25,8 +31,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
 ## Running Tests
 
 Watch mode:
@@ -35,10 +39,18 @@ Watch mode:
 npm run test
 ```
 
+## Running Production Build
 
+You can run the production build locally
 
-## Deploy on Vercel
+First build the app:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Then run the build output:
+
+```bash
+npm run start
+```
