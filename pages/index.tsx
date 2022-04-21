@@ -1,7 +1,9 @@
-import { Index } from '../components'
+import { Index } from '../components';
 
-export default function Home() {
-  return (
-    <Index />
-  )
+interface HomeProps {
+  hasReadPermission: boolean;
+}
+
+export default function Home({ hasReadPermission }: HomeProps) {
+  return <Index hasReadPermission={hasReadPermission} />;
 }
