@@ -1,7 +1,7 @@
 ## Requirements
 
-* Node >= 12.22.0
-* NPM
+- Node >= 12.22.0
+- NPM
 
 ## Running the App Locally
 
@@ -59,4 +59,19 @@ Then run the build output:
 
 ```bash
 npm run start
+```
+
+## Automated Formatting (in VSCode)
+
+- Open the command pallette in VSCode (ctrl + shift + p)
+- Search settings and open "Preferences: Open Settings (JSON)"
+- Add the following sections to your settings JSON
+- (you might need to restart VSCode for changes to be applied)
+
+```json
+"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+},
+"editor.formatOnSave": true,
+"editor.defaultFormatter": "esbenp.prettier-vscode"
 ```
