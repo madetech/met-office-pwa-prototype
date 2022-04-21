@@ -1,8 +1,19 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
+import { Login } from './login';
 
-export const Index = () => {
+interface IndexProps {
+  hasReadPermission: boolean;
+}
+
+export const Index = ({ hasReadPermission }: IndexProps) => {
+  const router = useRouter();
+  if (!hasReadPermission) {
+    return <Login redirectPath={router.asPath} />;
+  }
+
   return (
     <div className={styles.container}>
       <Head>
