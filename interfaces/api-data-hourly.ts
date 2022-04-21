@@ -1,4 +1,4 @@
-export interface Forecast {
+interface Forecast {
   feelsLikeTemperature: number;
   max10mWindGust: number;
   maxScreenAirTemp: number;
@@ -20,22 +20,22 @@ export interface Forecast {
   windSpeed10m: number;
 }
 
-export interface Location {
+interface Location {
   name: string;
 }
 
-export interface Properties {
+interface Properties {
   location: Location;
   requestPointDistance: number;
   timeSeries: Forecast[];
 }
 
-export interface Geometry {
+interface Geometry {
   type: string;
   coordinates: number[];
 }
 
-export interface Feature {
+interface Feature {
   geometry: Geometry;
   properties: Properties;
 }
@@ -44,5 +44,5 @@ export interface AppProps {
   data: {
     features: Feature[];
     type: string;
-  }
+  };
 }

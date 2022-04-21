@@ -1,18 +1,16 @@
-import getForecastData from "../requests/getForecastData";
+import getForecastData from '../requests/getForecastData';
 
-import ApiTestComponent from "../components/api-test";
-import { AppProps } from "../interfaces/api-data-hourly";
+import ApiTestComponent from '../components/api-test';
+import { AppProps } from '../interfaces/api-data-hourly';
 
 const ApiTest = ({ data }: AppProps) => {
-  return (
-    <ApiTestComponent data={data} />
-  )
-}
+  return <ApiTestComponent data={data} />;
+};
 
 export default ApiTest;
 
 export const getServerSideProps = async () => {
-  const { data } = await getForecastData("hourly");
+  const { data } = await getForecastData('hourly', 50.2113, -5.4813);
   if (!data) return { notFound: true };
-  return { props: { data }};
-}
+  return { props: { data } };
+};
