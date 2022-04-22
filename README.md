@@ -1,3 +1,10 @@
+- [Requirements](#requirements)
+- [Running the App Locally](#running-the-app-locally)
+- [Running Tests](#running-tests)
+- [Running Production Build Locally](#running-production-build-locally)
+- [Automated Formatting (in VSCode)](#automated-formatting-in-vscode)
+- [Environment Variables and Secrets](#environment-variables-and-secrets)
+
 ## Requirements
 
 - Node >= 12.22.0
