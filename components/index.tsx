@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
 import { Login } from './login';
+import { WeatherIcon } from './WeatherIcons';
 
 interface IndexProps {
   hasReadPermission: boolean;
@@ -21,6 +22,8 @@ export const Index = ({ hasReadPermission }: IndexProps) => {
         <link rel="apple-touch-icon" href="/icon.png"></link>
         <meta name="theme-color" content="#fff" />
       </Head>
+
+      <WeatherIcon iconNumber={0} />
 
       <main className={styles.main}>
         <h1 className={styles.title}>
