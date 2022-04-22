@@ -1,7 +1,7 @@
 .navContainer {
   position: sticky;
   top: 0;
-  background-color: var(--met-office-blue-700);
+  background-color: var(--met-office-blue-650);
 }
 
 .elementContainer {
