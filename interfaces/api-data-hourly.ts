@@ -40,7 +40,7 @@ interface Feature {
   properties: Properties;
 }
 
-export interface AppProps {
+export interface HourlyData {
   data: {
     features: Feature[];
     type: string;
