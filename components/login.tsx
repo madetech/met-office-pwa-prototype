@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Cookies from 'universal-cookie';
 import { LOG_IN_COOKIE_KEY } from '../constants';
-// import styles from '../styles/Login.module.css';
 
 interface LoginProps {
   redirectPath: string;
@@ -33,6 +32,8 @@ export const Login = ({ redirectPath }: LoginProps) => {
             const cookies = new Cookies();
             cookies.set(LOG_IN_COOKIE_KEY, password, {
               path: '/',
+              sameSite: 'strict',
+              secure: true,
             });
             window.location.href = redirectPath ?? '/';
           }}
