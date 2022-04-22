@@ -5,14 +5,18 @@ interface WeatherIconProps {
 }
 
 export const WeatherIcon = ({ iconNumber }: WeatherIconProps) => {
-  return (
-    <Image
-      src={`/assets/weather-icons/${iconNumber}.svg`}
-      width={48}
-      height={48}
-      alt={altText.get(iconNumber)}
-    />
-  );
+  return icons.get(iconNumber) || <p>unknown icon</p>;
 };
 
-const altText = new Map([[0, 'Clear night']]);
+const icons = new Map([
+  [
+    0,
+    <Image
+      src={`/assets/weather-icons/0-clear-night.svg`}
+      width={48}
+      height={48}
+      alt="Clear night"
+      key="0"
+    />,
+  ],
+]);
