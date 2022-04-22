@@ -79,3 +79,18 @@ npm run start
   - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
   - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - (you might need to restart VSCode for changes to be applied)
+
+## Environment Variables and Secrets
+
+Copy .env.sample to .env.local, .env.local is where your environment variables should live for local deployment. The copied file will contain all the required environment variables but not contain the required key values.
+
+```bash
+cp .env.sample .env.local
+```
+
+- MET_OFFICE_API_BASE_URL - URL required to call met office API for weather data - Set in .env.local and Vercel Environment Variables
+- MET_OFFICE_API_CLIENT_ID - Client ID for calling the API - Set in .env.local and Vercel Environment
+- MET_OFFICE_API_CLIENT_SECRET - Client secret for calling the met office API - Set in .env.local and Vercel Environment
+- LOGIN_PASSWORD - Password required to access deployed website - Set in .env.local and Vercel Environment
+- REQUIRE_PASSWORD - Only require password to access webapp if value is true - Set in .env.local and Vercel Environment
+- CHROMATIC_PROJECT_TOKEN - Token to allow chromatic to pull changes from our repo for visual regression testing - Set in Github secrets
