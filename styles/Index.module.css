@@ -1,0 +1,7 @@
+.pageContainer {
+  background-image: linear-gradient(
+    var(--met-office-blue-700),
+    var(--met-office-beige-300)
+  );
+  height: 100vh;
+}
