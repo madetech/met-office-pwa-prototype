@@ -13,6 +13,10 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const cookies = new Cookies(appContext.ctx.req?.headers.cookie);
   const password = cookies.get(LOG_IN_COOKIE_KEY) ?? '';
 
+  if (`${process.env.REQUIRE_PASSWORD}` !== 'true') {
+    appProps.pageProps.hasReadPermission = true;
+  }
+
   if (password === `${process.env.LOGIN_PASSWORD}`) {
     appProps.pageProps.hasReadPermission = true;
   }
