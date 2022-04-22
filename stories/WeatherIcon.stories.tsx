@@ -19,3 +19,9 @@ export const Primary = Template.bind({});
 Primary.args = {
   iconNumber: 0,
 };
+
+export const Unknown = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Unknown.args = {
+  iconNumber: -1,
+};
