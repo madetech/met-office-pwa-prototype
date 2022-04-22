@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { HourlyData } from '../interfaces/api-data-hourly';
 
 const getForecastData = async (
   frequency: 'hourly' | 'daily',
   latitude: number,
   longitude: number
 ) => {
-  const res = await axios.get(
+  const res = await axios.get<HourlyData>(
     `${process.env.MET_OFFICE_API_BASE_URL}${frequency}`,
     {
       headers: {
