@@ -66,7 +66,6 @@ npm run start
 - Open the command pallette in VSCode (ctrl + shift + p)
 - Search settings and open "Preferences: Open Settings (JSON)"
 - Add the following sections to your settings JSON
-- (you might need to restart VSCode for changes to be applied)
 
 ```json
 "editor.codeActionsOnSave": {
@@ -75,3 +74,8 @@ npm run start
 "editor.formatOnSave": true,
 "editor.defaultFormatter": "esbenp.prettier-vscode"
 ```
+
+- You will also benefit from installing two VSCode extensions (with these installed VSCode will highlight any linting issues):
+  - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- (you might need to restart VSCode for changes to be applied)
