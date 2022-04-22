@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "storybook": "start-storybook -p 6006 -s ./public",
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "axios": "^0.26.1",
@@ -19,6 +22,15 @@
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/builder-webpack5": "^6.4.22",
+    "@storybook/manager-webpack5": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.11",
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.1.1",
     "@testing-library/user-event": "14.1.1",
@@ -26,9 +38,12 @@
     "@types/react": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "babel-jest": "27.5.1",
+    "babel-loader": "^8.2.5",
+    "chromatic": "^6.5.4",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-storybook": "^0.5.11",
     "eslint-plugin-testing-library": "5.3.1",
     "jest": "27.5.1",
     "prettier": "^2.6.2",

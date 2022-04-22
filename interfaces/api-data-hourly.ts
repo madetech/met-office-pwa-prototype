@@ -41,8 +41,6 @@ interface Feature {
 }
 
 export interface HourlyData {
-  data: {
-    features: Feature[];
-    type: string;
-  };
+  features: Feature[];
+  type: string;
 }
