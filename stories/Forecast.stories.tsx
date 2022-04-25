@@ -1033,6 +1033,11 @@ const hourlyData: HourlyData = {
             significantWeatherCode: 3,
             precipitationRate: 0,
             probOfPrecipitation: 1,
+            max10mWindGust: 0,
+            maxScreenAirTemp: 0,
+            minScreenAirTemp: 0,
+            totalPrecipAmount: 0,
+            totalSnowAmount: 0,
           },
           {
             time: '2022-04-27T11:00Z',
@@ -1049,211 +1054,13 @@ const hourlyData: HourlyData = {
             significantWeatherCode: 3,
             precipitationRate: 0,
             probOfPrecipitation: 1,
+            max10mWindGust: 0,
+            maxScreenAirTemp: 0,
+            minScreenAirTemp: 0,
+            totalPrecipAmount: 0,
+            totalSnowAmount: 0,
           },
         ],
-      },
-    },
-  ],
-  parameters: [
-    {
-      totalSnowAmount: {
-        type: 'Parameter',
-        description: 'Total Snow Amount Over Previous Hour',
-        unit: {
-          label: 'millimetres',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'mm',
-          },
-        },
-      },
-      screenTemperature: {
-        type: 'Parameter',
-        description: 'Screen Air Temperature',
-        unit: {
-          label: 'degrees Celsius',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'Cel',
-          },
-        },
-      },
-      visibility: {
-        type: 'Parameter',
-        description: 'Visibility',
-        unit: {
-          label: 'metres',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'm',
-          },
-        },
-      },
-      windDirectionFrom10m: {
-        type: 'Parameter',
-        description: '10m Wind From Direction',
-        unit: {
-          label: 'degrees',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'deg',
-          },
-        },
-      },
-      precipitationRate: {
-        type: 'Parameter',
-        description: 'Precipitation Rate',
-        unit: {
-          label: 'millimetres per hour',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'mm/h',
-          },
-        },
-      },
-      maxScreenAirTemp: {
-        type: 'Parameter',
-        description: 'Maximum Screen Air Temperature Over Previous Hour',
-        unit: {
-          label: 'degrees Celsius',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'Cel',
-          },
-        },
-      },
-      feelsLikeTemperature: {
-        type: 'Parameter',
-        description: 'Feels Like Temperature',
-        unit: {
-          label: 'degrees Celsius',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'Cel',
-          },
-        },
-      },
-      screenDewPointTemperature: {
-        type: 'Parameter',
-        description: 'Screen Dew Point Temperature',
-        unit: {
-          label: 'degrees Celsius',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'Cel',
-          },
-        },
-      },
-      screenRelativeHumidity: {
-        type: 'Parameter',
-        description: 'Screen Relative Humidity',
-        unit: {
-          label: 'percentage',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: '%',
-          },
-        },
-      },
-      windSpeed10m: {
-        type: 'Parameter',
-        description: '10m Wind Speed',
-        unit: {
-          label: 'metres per second',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'm/s',
-          },
-        },
-      },
-      probOfPrecipitation: {
-        type: 'Parameter',
-        description: 'Probability of Precipitation',
-        unit: {
-          label: 'percentage',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: '%',
-          },
-        },
-      },
-      max10mWindGust: {
-        type: 'Parameter',
-        description: 'Maximum 10m Wind Gust Speed Over Previous Hour',
-        unit: {
-          label: 'metres per second',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'm/s',
-          },
-        },
-      },
-      significantWeatherCode: {
-        type: 'Parameter',
-        description: 'Significant Weather Code',
-        unit: {
-          label: 'dimensionless',
-          symbol: {
-            value:
-              'https://metoffice.apiconnect.ibmcloud.com/metoffice/production/',
-            type: '1',
-          },
-        },
-      },
-      minScreenAirTemp: {
-        type: 'Parameter',
-        description: 'Minimum Screen Air Temperature Over Previous Hour',
-        unit: {
-          label: 'degrees Celsius',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'Cel',
-          },
-        },
-      },
-      totalPrecipAmount: {
-        type: 'Parameter',
-        description: 'Total Precipitation Amount Over Previous Hour',
-        unit: {
-          label: 'millimetres',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'mm',
-          },
-        },
-      },
-      mslp: {
-        type: 'Parameter',
-        description: 'Mean Sea Level Pressure',
-        unit: {
-          label: 'pascals',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'Pa',
-          },
-        },
-      },
-      windGustSpeed10m: {
-        type: 'Parameter',
-        description: '10m Wind Gust Speed',
-        unit: {
-          label: 'metres per second',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: 'm/s',
-          },
-        },
-      },
-      uvIndex: {
-        type: 'Parameter',
-        description: 'UV Index',
-        unit: {
-          label: 'dimensionless',
-          symbol: {
-            value: 'http://www.opengis.net/def/uom/UCUM/',
-            type: '1',
-          },
-        },
       },
     },
   ],
