@@ -6,7 +6,7 @@ import { WeatherIcon } from '../components/WeatherIcons';
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   component: WeatherIcon,
-  title: 'Weather Icon',
+  title: 'Weather Icons',
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
