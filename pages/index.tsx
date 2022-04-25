@@ -1,6 +1,6 @@
 import getForecastData from '../requests/getForecastData';
-import { Index } from '../components';
 import { HourlyData } from '../interfaces/api-data-hourly';
+import { Index } from '../components';
 
 interface HomeProps {
   hasReadPermission: boolean;
@@ -12,7 +12,10 @@ export default function Home({ hasReadPermission, data }: HomeProps) {
 }
 
 export const getServerSideProps = async () => {
-  const { data } = await getForecastData('hourly', 50.2113, -5.4813);
+  // const stIves = [50.2113, -5.4813];
+  // const grantham = [52.9122, -0.642];
+  const cambridge = [52.2075, 0.124];
+  const { data } = await getForecastData('hourly', cambridge[0], cambridge[1]);
   if (!data) return { notFound: true };
   return { props: { data } };
 };

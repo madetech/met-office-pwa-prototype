@@ -1,22 +1,19 @@
-import { render, screen } from '@testing-library/react';
-import { Index } from '.';
+import React from 'react';
 import { HourlyData } from '../interfaces/api-data-hourly';
+import { ComponentStory } from '@storybook/react';
 
-jest.mock('next/router', () => ({
-  useRouter: () => ({
-    query: { myProp: 'myValue' },
-  }),
-}));
+import { Forecast } from '../components/Forecast';
 
-describe('Index', () => {
-  it('should display login form when read permission is false', () => {
-    render(<Index hasReadPermission={false} data={hourlyData} />);
+// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+export default {
+  component: Forecast,
+  title: 'Forecast',
+};
 
-    const passwordField = screen.getByText('Password');
-
-    expect(passwordField).toBeInTheDocument();
-  });
-});
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+const Template: ComponentStory<typeof Forecast> = (args) => (
+  <Forecast {...args} />
+);
 
 const hourlyData: HourlyData = {
   type: 'FeatureCollection',
@@ -1067,4 +1064,10 @@ const hourlyData: HourlyData = {
       },
     },
   ],
+};
+
+export const ForecastDisplay = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+ForecastDisplay.args = {
+  data: hourlyData,
 };
