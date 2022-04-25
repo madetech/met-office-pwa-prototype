@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { Login } from './login';
 import { Search } from './Search';
 import { Forecast } from './Forecast';
+import styles from '../styles/Index.module.css';
+
 interface IndexProps {
   data: HourlyData;
   hasReadPermission: boolean;
@@ -16,7 +18,7 @@ export const Index = ({ hasReadPermission, data }: IndexProps) => {
   }
 
   return (
-    <main className="wrapper">
+    <main className={styles.pageContainer}>
       <Navigation />
       <Search />
       <Forecast data={data} />

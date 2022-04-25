@@ -16,21 +16,16 @@ a {
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-.wrapper {
-  padding: 0.5rem;
-}
-
 .tile {
   padding: 1rem;
   margin-bottom: 1rem;
   border: 1px solid #555;
   border-radius: 10px;
-=======
+}
+
 :root {
   --met-office-blue-700: #20455c;
   --met-office-blue-650: #294b60;
 
   --met-office-beige-300: #c6bfae;
->>>>>>> main
 }

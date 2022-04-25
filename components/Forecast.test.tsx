@@ -1,20 +1,31 @@
 import { render, screen } from '@testing-library/react';
-import { Index } from '.';
 import { HourlyData } from '../interfaces/api-data-hourly';
+import { Forecast } from './Forecast';
 
-jest.mock('next/router', () => ({
-  useRouter: () => ({
-    query: { myProp: 'myValue' },
-  }),
-}));
+const degreesSymbol = String.fromCharCode(176);
 
-describe('Index', () => {
-  it('should display login form when read permission is false', () => {
-    render(<Index hasReadPermission={false} data={hourlyData} />);
+describe('forecast', () => {
+  it('should display forecast data place name', () => {
+    render(<Forecast data={hourlyData} />);
 
-    const passwordField = screen.getByText('Password');
+    const placeName = screen.getByText(
+      hourlyData.features[0].properties.location.name
+    );
 
-    expect(passwordField).toBeInTheDocument();
+    expect(placeName).toBeInTheDocument();
+  });
+
+  it("should display the forecast data's latitude and longitude", () => {
+    render(<Forecast data={hourlyData} />);
+
+    const expectedLatitude = `50.2113${degreesSymbol}N`;
+    const expectedLongitude = `5.4813${degreesSymbol}W`;
+
+    const latitude = screen.getByText(`Lat: ${expectedLatitude}`);
+    const longitude = screen.getByText(`Long: ${expectedLongitude}`);
+
+    expect(latitude).toBeInTheDocument();
+    expect(longitude).toBeInTheDocument();
   });
 });
 
