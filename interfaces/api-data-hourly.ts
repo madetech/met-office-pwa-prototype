@@ -26,6 +26,7 @@ interface Location {
 
 interface Properties {
   location: Location;
+  modelRunDate: string;
   requestPointDistance: number;
   timeSeries: Forecast[];
 }
@@ -36,6 +37,7 @@ interface Geometry {
 }
 
 interface Feature {
+  type: string;
   geometry: Geometry;
   properties: Properties;
 }

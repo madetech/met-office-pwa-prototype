@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-import { Login } from '../components/login';
 import getForecastData from '../requests/getForecastData';
 import { HourlyData } from '../interfaces/api-data-hourly';
 import { Index } from '../components';
