@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { Login } from './login';
 import { HourlyData } from '../interfaces/api-data-hourly';
-
+import { Navigation } from './Navigation';
+import styles from '../styles/Index.module.css';
 interface IndexProps {
   hasReadPermission: boolean;
   data: HourlyData;
@@ -19,7 +20,8 @@ export const Index = ({ hasReadPermission, data }: IndexProps) => {
   const forecasts = data.features[0].properties.timeSeries;
 
   return (
-    <div>
+    <div className={styles.pageContainer}>
+      <Navigation />
       <h1>{placeName}</h1>
       <h2>
         Lat: {lat} / Long: {long}
