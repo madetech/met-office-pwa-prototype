@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import { Login } from './login';
+// import { useRouter } from 'next/router';
+// import { Login } from './login';
 import { HourlyData } from '../interfaces/api-data-hourly';
 
 interface IndexProps {
@@ -8,10 +8,10 @@ interface IndexProps {
 }
 
 export const Index = ({ hasReadPermission, data }: IndexProps) => {
-  const router = useRouter();
-  if (!hasReadPermission) {
-    return <Login redirectPath={router.asPath} />;
-  }
+  // const router = useRouter();
+  // if (!hasReadPermission) {
+  //   return <Login redirectPath={router.asPath} />;
+  // }
 
   const long = data.features[0].geometry.coordinates[0];
   const lat = data.features[0].geometry.coordinates[1];
