@@ -1,30 +1,25 @@
 import { HourlyData } from '../interfaces/api-data-hourly';
-
+import { Navigation } from './Navigation';
+import { useRouter } from 'next/router';
+import { Login } from './login';
+import { Search } from './Search';
+import { Forecast } from './Forecast';
 interface IndexProps {
   data: HourlyData;
+  hasReadPermission: boolean;
 }
 
-export const Index = ({ data }: IndexProps) => {
-  const long = data.features[0].geometry.coordinates[0];
-  const lat = data.features[0].geometry.coordinates[1];
-  const placeName = data.features[0].properties.location.name;
-  const forecasts = data.features[0].properties.timeSeries;
+export const Index = ({ hasReadPermission, data }: IndexProps) => {
+  const router = useRouter();
+  if (!hasReadPermission) {
+    return <Login redirectPath={router.asPath} />;
+  }
 
   return (
-    <section>
-      <h1>{placeName}</h1>
-      <h2>
-        Lat: {lat} / Long: {long}
-      </h2>
-      {forecasts.map((forecast, index: number) => {
-        return (
-          <p key={index}>
-            {forecast.time} | Temp: {forecast.screenTemperature} | Precip.
-            probability {forecast.probOfPrecipitation} | Weather code:{' '}
-            {forecast.significantWeatherCode}
-          </p>
-        );
-      })}
-    </section>
+    <main className="wrapper">
+      <Navigation />
+      <Search />
+      <Forecast data={data} />
+    </main>
   );
 };
