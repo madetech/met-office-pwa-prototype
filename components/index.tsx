@@ -11,7 +11,7 @@ export const Index = ({ data }: IndexProps) => {
   const forecasts = data.features[0].properties.timeSeries;
 
   return (
-    <div>
+    <section>
       <h1>{placeName}</h1>
       <h2>
         Lat: {lat} / Long: {long}
@@ -25,6 +25,6 @@ export const Index = ({ data }: IndexProps) => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 };

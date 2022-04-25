@@ -1,4 +1,4 @@
-interface Forecast {
+export interface Forecast {
   feelsLikeTemperature: number;
   max10mWindGust: number;
   maxScreenAirTemp: number;
