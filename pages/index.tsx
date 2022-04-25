@@ -15,7 +15,7 @@ export default function Home({ hasReadPermission, data }: HomeProps) {
     return <Login redirectPath={router.asPath} />;
   }
 
-  return <Index hasReadPermission={hasReadPermission} data={data} />;
+  return <Index data={data} />;
 }
 
 export const getServerSideProps = async () => {
