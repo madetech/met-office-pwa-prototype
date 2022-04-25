@@ -9,16 +9,22 @@ describe('getForecastData', () => {
   const FREQUENCY = 'hourly';
   const BASE_URL =
     'https://foo.appdomain.cloud/metoffice/production/v0/forecasts/point/';
+  const FORECAST_CLIENT_ID = 'foo';
+  const FORECAST_CLIENT_SECRET = 'bar';
+
+  beforeAll(() => {
+    process.env.MET_OFFICE_API_BASE_URL = BASE_URL;
+    process.env.MET_OFFICE_API_CLIENT_ID = FORECAST_CLIENT_ID;
+    process.env.MET_OFFICE_API_CLIENT_SECRET = FORECAST_CLIENT_SECRET;
+  });
 
   it('should call to axios with expected requirements', async () => {
-    process.env.MET_OFFICE_API_BASE_URL = BASE_URL;
-
     await getForecastData(FREQUENCY, LATITUDE, LONGITUDE);
 
     expect(axios.get).toBeCalledWith(`${BASE_URL}${FREQUENCY}`, {
       headers: {
-        'X-IBM-Client-Id': 'undefined',
-        'X-IBM-Client-Secret': 'undefined',
+        'X-IBM-Client-Id': FORECAST_CLIENT_ID,
+        'X-IBM-Client-Secret': FORECAST_CLIENT_SECRET,
         accept: 'application/json',
       },
       params: {
