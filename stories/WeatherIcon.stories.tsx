@@ -14,9 +14,9 @@ const Template: ComponentStory<typeof WeatherIcon> = (args) => (
   <WeatherIcon {...args} />
 );
 
-export const Primary = Template.bind({});
+export const ClearNight = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
+ClearNight.args = {
   iconNumber: 0,
 };
 
