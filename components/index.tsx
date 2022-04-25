@@ -26,9 +26,9 @@ export const Index = ({ hasReadPermission, data }: IndexProps) => {
       <h2>
         Lat: {lat} / Long: {long}
       </h2>
-      {forecasts.map((forecast, index: number) => {
+      {forecasts.map((forecast) => {
         return (
-          <p key={index}>
+          <p data-testid={forecast.time} key={forecast.time}>
             {forecast.time} | Temp: {forecast.screenTemperature} | Precip.
             probability {forecast.probOfPrecipitation} | Weather code:{' '}
             {forecast.significantWeatherCode}
