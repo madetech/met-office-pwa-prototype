@@ -3,6 +3,10 @@ import Geocode from 'react-geocode';
 
 export function Location() {
   useEffect(() => {
+    const apiKey = `${process.env.GOOGLE_API_KEY}`;
+
+    console.log(apiKey);
+
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log('Latitude is     : ', position.coords.latitude);
       console.log('Longitude is    : ', position.coords.longitude);
