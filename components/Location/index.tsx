@@ -1,38 +1,28 @@
-import React, { useEffect } from 'react';
-import Geocode from 'react-geocode';
+import React, { useState, useEffect } from 'react';
 
-export function Location() {
+export const LocationComponent = () => {
+  const [latitude, setLatitude] = useState<number>(999);
+  const [longitude, setLongitude] = useState<number>(999);
+
   useEffect(() => {
-    const apiKey = `${process.env.GOOGLE_API_KEY}`;
+    if (latitude === 999) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        console.log('Latitude is     : ', position.coords.latitude);
+        console.log('Longitude is    : ', position.coords.longitude);
 
-    console.log(apiKey);
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+      });
+    }
+  }, [latitude]);
 
-    navigator.geolocation.getCurrentPosition(function (position) {
-      console.log('Latitude is     : ', position.coords.latitude);
-      console.log('Longitude is    : ', position.coords.longitude);
-
-      Geocode.setApiKey(apiKey);
-
-      Geocode.fromLatLng(
-        position.coords.latitude.toString(),
-        position.coords.longitude.toString()
-      ).then(
-        (response) => {
-          const address = response.results[0].formatted_address;
-          console.log('Address is: ', address);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    });
-
-    return () => console.log('unmounting...');
-  }, []);
+  if (longitude === 999) {
+    return <div>&nbsp;</div>;
+  }
 
   return (
     <div>
-      <h4>Using geolocation JavaScript API in React</h4>
+      Current latitude: {latitude} / longitude: {longitude}
     </div>
   );
-}
+};
