@@ -2,7 +2,9 @@
   padding-right: 1rem;
 }
 
-.timeslot div {
+.timeslot p {
   padding: 0.3rem 0;
   text-align: center;
+  margin: 0;
+  line-height: 16px;
 }

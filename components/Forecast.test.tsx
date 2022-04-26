@@ -27,6 +27,42 @@ describe('forecast', () => {
     expect(latitude).toBeInTheDocument();
     expect(longitude).toBeInTheDocument();
   });
+
+  it('should display 15 timeslots for the hourly data', () => {
+    jest
+      .spyOn(global.Date, 'now')
+      .mockImplementationOnce(() => new Date('2022-04-25T11:00Z').valueOf());
+
+    render(<Forecast data={hourlyData} />);
+
+    const timeslots = screen.getAllByTestId('timeslot');
+
+    expect(timeslots.length).toBe(15);
+  });
+
+  it('should not display forecast data that is more than 1 hour old', () => {
+    jest
+      .spyOn(global.Date, 'now')
+      .mockImplementationOnce(() => new Date('2022-04-25T12:00Z').valueOf());
+
+    render(<Forecast data={hourlyData} />);
+
+    const filterOudTime = screen.queryByText('12:00');
+
+    expect(filterOudTime).toBeNull();
+  });
+
+  it('should display forecast data that is less than 1 hour old', () => {
+    jest
+      .spyOn(global.Date, 'now')
+      .mockImplementationOnce(() => new Date('2022-04-25T12:01Z').valueOf());
+
+    render(<Forecast data={hourlyData} />);
+
+    const filterOudTime = screen.queryByText('12:00');
+
+    expect(filterOudTime).toBeNull();
+  });
 });
 
 const hourlyData: HourlyData = {
