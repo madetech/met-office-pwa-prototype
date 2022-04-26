@@ -1,3 +1,4 @@
+import { WeatherIcon } from './WeatherIcons';
 import { Forecast } from '../interfaces/api-data-hourly';
 import styles from '../styles/Timeslot.module.css';
 
@@ -29,7 +30,9 @@ export const Timeslot = ({ forecast }: TimeslotProps) => {
   return (
     <article className={styles.timeslot}>
       <div>{time}</div>
-      <div>{forecast.significantWeatherCode}</div>
+      <div>
+        <WeatherIcon iconNumber={forecast.significantWeatherCode} />
+      </div>
       <div>{precipProb}</div>
       <div>{temperature}</div>
     </article>
