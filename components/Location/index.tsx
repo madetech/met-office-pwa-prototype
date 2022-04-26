@@ -27,6 +27,8 @@ export const LocationComponent = ({ googleApiKey }: Props) => {
           position.coords.longitude.toString()
         ).then(
           (response) => {
+            console.log('Address object', response.results[0]);
+
             setCurrentAddress(response.results[0].formatted_address);
           },
           (error) => {
