@@ -1,0 +1,8 @@
+.videoContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.videoContainer iframe {
+  border: none;
+}
