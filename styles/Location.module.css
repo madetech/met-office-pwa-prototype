@@ -1,3 +1,7 @@
 .address {
   color: white;
 }
+
+.notFound {
+  display: none;
+}
