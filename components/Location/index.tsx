@@ -10,16 +10,18 @@ export const Location = () => {
   useEffect(() => {
     const getAddress = async () => {
       if (latitude === null) {
-        navigator.geolocation.getCurrentPosition(async function (position) {
-          setLatitude(position.coords.latitude);
-          setLongitude(position.coords.longitude);
+        if ('geolocation' in navigator) {
+          navigator.geolocation.getCurrentPosition(async function (position) {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
 
-          const address = await axios.get<string>(
-            `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
-          );
+            const address = await axios.get<string>(
+              `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
+            );
 
-          setCurrentAddress(address.data);
-        });
+            setCurrentAddress(address.data);
+          });
+        }
       }
     };
 
@@ -34,5 +36,5 @@ export const Location = () => {
     );
   }
 
-  return <div className={styles.notFound} />;
+  return <div data-testid="address-not-found" className={styles.notFound} />;
 };
