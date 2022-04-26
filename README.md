@@ -101,3 +101,4 @@ cp .env.sample .env.local
 - LOGIN_PASSWORD - Password required to access deployed website - Set in .env.local and Vercel Environment
 - REQUIRE_PASSWORD - Only require password to access webapp if value is true - Set in .env.local and Vercel Environment
 - CHROMATIC_PROJECT_TOKEN - Token to allow chromatic to pull changes from our repo for visual regression testing - Set in Github secrets
+- GOOGLE_API_KEY - Client secret for calling the Google Geocoding API (converts latitude and longitude into a street address) - Set in .env.local and Vercel Environment
