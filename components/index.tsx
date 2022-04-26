@@ -6,6 +6,7 @@ import { Search } from './Search';
 import { Forecast } from './Forecast';
 import { Location } from './Location';
 import styles from '../styles/Index.module.css';
+import { Video } from './Video';
 
 interface IndexProps {
   data: HourlyData;
@@ -24,6 +25,7 @@ export const Index = ({ hasReadPermission, data }: IndexProps) => {
       <Search />
       <Location />
       <Forecast data={data} />
+      <Video />
     </main>
   );
 };
