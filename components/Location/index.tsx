@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from '../../styles/Location.module.css';
 
 export const LocationComponent = () => {
   const [latitude, setLatitude] = useState<number>(999);
@@ -17,11 +18,11 @@ export const LocationComponent = () => {
   }, [latitude]);
 
   if (longitude === 999) {
-    return <div>&nbsp;</div>;
+    return <div className={styles.notFound} />;
   }
 
   return (
-    <div>
+    <div className={styles.address}>
       Current latitude: {latitude} / longitude: {longitude}
     </div>
   );
