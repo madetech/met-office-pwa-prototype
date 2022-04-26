@@ -165,7 +165,7 @@ const icons = new Map([
       src={`/assets/weather-icons/16-sleet-shower-night.svg`}
       width={48}
       height={48}
-      alt="Sleet shower night"
+      alt="Sleet shower (night)"
       key="16"
     />,
   ],
@@ -175,7 +175,7 @@ const icons = new Map([
       src={`/assets/weather-icons/17-sleet-shower-day.svg`}
       width={48}
       height={48}
-      alt="Sleet shower day"
+      alt="Sleet shower (day)"
       key="17"
     />,
   ],
