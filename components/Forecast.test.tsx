@@ -43,7 +43,7 @@ describe('forecast', () => {
   it('should not display forecast data that is more than 1 hour old', () => {
     jest
       .spyOn(global.Date, 'now')
-      .mockImplementationOnce(() => new Date('2022-04-25T12:00Z').valueOf());
+      .mockImplementationOnce(() => new Date('2022-04-25T13:00Z').valueOf());
 
     render(<Forecast data={hourlyData} />);
 
@@ -61,7 +61,7 @@ describe('forecast', () => {
 
     const filterOudTime = screen.queryByText('12:00');
 
-    expect(filterOudTime).toBeNull();
+    expect(filterOudTime).toBeInTheDocument();
   });
 });
 

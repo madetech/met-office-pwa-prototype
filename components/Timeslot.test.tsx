@@ -7,7 +7,7 @@ describe('timeslot', () => {
 
   beforeEach(() => {
     forecast = {
-      time: '2022-04-25T08:00Z',
+      time: '2022-04-25T09:00Z',
       screenTemperature: 12.56,
       maxScreenAirTemp: 12.56,
       minScreenAirTemp: 12.25,
@@ -38,7 +38,7 @@ describe('timeslot', () => {
   });
 
   it('should display forecast correctly for midnight', () => {
-    forecast.time = '2022-04-25T23:00Z';
+    forecast.time = '2022-04-26T00:00Z';
 
     render(<Timeslot forecast={forecast} />);
 
