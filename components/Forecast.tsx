@@ -24,7 +24,19 @@ export const Forecast = ({ data }: ForecastProps) => {
   const long = formatLongitude(data.features[0].geometry.coordinates[0]);
   const lat = formatLatitude(data.features[0].geometry.coordinates[1]);
   const placeName = data.features[0].properties.location.name;
-  const forecasts = data.features[0].properties.timeSeries;
+
+  const currenTimeMinusOneHour = new Date(Date.now());
+  currenTimeMinusOneHour.setMinutes(1);
+  currenTimeMinusOneHour.setHours(currenTimeMinusOneHour.getHours() - 1);
+
+  const forecasts = data.features[0].properties.timeSeries
+    .filter((forecast) => {
+      if (Number(new Date(forecast.time)) < Number(currenTimeMinusOneHour)) {
+        return false;
+      }
+      return true;
+    })
+    .slice(0, 15);
 
   return (
     <section className="tile">

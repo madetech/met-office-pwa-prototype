@@ -6,12 +6,11 @@ interface TimeslotProps {
   forecast: Forecast;
 }
 
-const formatTime = (gmtString: string, isBst: boolean) => {
-  const gmt = gmtString.split('T')[1];
-  const hour = isBst
-    ? Number(gmt.split(':')[0]) + 1
-    : Number(gmt.split(':')[0]);
-  return `${hour}:00`;
+const getHourRepresentation = (isoTime: string) => {
+  const dateTime = new Date(isoTime);
+  const hour = dateTime.getHours();
+
+  return `${hour.toString().padStart(2, '0')}:00`;
 };
 
 const formatPrecipProb = (prob: number) => {
@@ -23,18 +22,18 @@ const formatTemperature = (degrees: number) => {
 };
 
 export const Timeslot = ({ forecast }: TimeslotProps) => {
-  const time = formatTime(forecast.time, true);
+  const time = getHourRepresentation(forecast.time);
   const temperature = formatTemperature(forecast.screenTemperature);
   const precipProb = formatPrecipProb(forecast.probOfPrecipitation);
 
   return (
-    <article className={styles.timeslot}>
-      <div>{time}</div>
+    <article className={styles.timeslot} data-testid="timeslot">
+      <p>{time}</p>
       <div>
         <WeatherIcon iconNumber={forecast.significantWeatherCode} />
       </div>
-      <div>{precipProb}</div>
-      <div>{temperature}</div>
+      <p>{precipProb}</p>
+      <p>{temperature}</p>
     </article>
   );
 };
