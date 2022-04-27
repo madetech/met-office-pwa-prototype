@@ -1,6 +1,7 @@
 import React from 'react';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 import styles from '../styles/Video.module.css';
+import { DraggableTile } from './DraggableTile';
 
 interface VideoProps {
   videoData: YoutubePlaylistApiResponse;
@@ -8,7 +9,7 @@ interface VideoProps {
 
 export const Video = ({ videoData }: VideoProps) => {
   return (
-    <section className="tile">
+    <DraggableTile>
       <h2>UK Video Forecast</h2>
       <div className={styles.videoContainer}>
         <iframe
@@ -18,6 +19,6 @@ export const Video = ({ videoData }: VideoProps) => {
           title="Tuesday afternoon forecast 26/04/2022"
         />
       </div>
-    </section>
+    </DraggableTile>
   );
 };
