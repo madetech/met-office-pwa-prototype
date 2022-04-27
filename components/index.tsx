@@ -22,12 +22,14 @@ export const Index = ({ hasReadPermission, data, videoData }: IndexProps) => {
   }
 
   return (
-    <main className={styles.pageContainer}>
+    <>
       <Navigation />
-      <Search />
-      <Location />
-      <Forecast data={data} />
-      <Video videoData={videoData} />
-    </main>
+      <main className={styles.pageContainer}>
+        <Search />
+        <Location />
+        <Forecast data={data} />
+        <Video videoData={videoData} />
+      </main>
+    </>
   );
 };

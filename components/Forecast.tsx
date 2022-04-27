@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useState } from 'react';
 import { HourlyData } from '../interfaces/api-data-hourly';
 import styles from '../styles/Forecast.module.css';
 import { Timeslot } from './Timeslot';
@@ -22,15 +24,28 @@ interface ForecastProps {
 }
 
 export const Forecast = ({ data }: ForecastProps) => {
-  const long = formatLongitude(data.features[0].geometry.coordinates[0]);
-  const lat = formatLatitude(data.features[0].geometry.coordinates[1]);
-  const placeName = data.features[0].properties.location.name;
+  const [forecastData, setForecastData] = useState(data);
+  const [lastUpdated, setLastUpdated] = useState(new Date());
+
+  const coords = forecastData.features[0].geometry.coordinates;
+  const long = formatLongitude(coords[0]);
+  const lat = formatLatitude(coords[1]);
+  const placeName = forecastData.features[0].properties.location.name;
+  const lastUpdatedTime = lastUpdated.toLocaleTimeString();
 
   const currenTimeMinusOneHour = new Date(Date.now());
   currenTimeMinusOneHour.setMinutes(1);
   currenTimeMinusOneHour.setHours(currenTimeMinusOneHour.getHours() - 1);
 
-  const forecasts = data.features[0].properties.timeSeries
+  const handleRefresh = async () => {
+    const res = await axios.get<HourlyData>(
+      `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
+    );
+    setForecastData(res.data);
+    setLastUpdated(new Date());
+  };
+
+  const forecasts = forecastData.features[0].properties.timeSeries
     .filter((forecast) => {
       if (Number(new Date(forecast.time)) < Number(currenTimeMinusOneHour)) {
         return false;
@@ -41,19 +56,25 @@ export const Forecast = ({ data }: ForecastProps) => {
 
   return (
     <DraggableTile>
-      <article className={styles.locationData}>
-        <h2 className={styles.locationName}>{placeName}</h2>
-        <div className={styles.locationPosition}>
-          <span>Lat: {lat}</span>
-          <span>Long: {long}</span>
-        </div>
-      </article>
+      <section className={styles.heading}>
+        <article className={styles.locationData}>
+          <h2 className={styles.locationName}>{placeName}</h2>
+          <span className={styles.locationPosition}>
+            Lat: {lat} / Long: {long}
+          </span>
+        </article>
+        <button className={styles.refresh} onClick={handleRefresh}>
+          Refresh
+        </button>
+      </section>
 
       <section className={styles.timeslots}>
         {forecasts.map((forecast) => {
           return <Timeslot forecast={forecast} key={forecast.time} />;
         })}
       </section>
+
+      <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p>
     </DraggableTile>
   );
 };

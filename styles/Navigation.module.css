@@ -2,6 +2,8 @@
   position: sticky;
   top: 0;
   background-color: #294b60;
+  z-index: 1;
+  padding: 0.5rem;
 }
 
 .elementContainer {
