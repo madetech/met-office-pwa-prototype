@@ -4,6 +4,7 @@ import { HourlyData } from '../interfaces/api-data-hourly';
 import getForecastData from '../requests/getForecastData';
 import styles from '../styles/Forecast.module.css';
 import { Timeslot } from './Timeslot';
+import { DraggableTile } from './DraggableTile';
 
 const degreesSymbol = String.fromCharCode(176);
 
@@ -56,7 +57,7 @@ export const Forecast = ({ data }: ForecastProps) => {
     .slice(0, 15);
 
   return (
-    <section className="tile">
+    <DraggableTile>
       <section className={styles.heading}>
         <article className={styles.locationData}>
           <h2 className={styles.locationName}>{placeName}</h2>
@@ -76,6 +77,6 @@ export const Forecast = ({ data }: ForecastProps) => {
       </section>
 
       <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p>
-    </section>
+    </DraggableTile>
   );
 };

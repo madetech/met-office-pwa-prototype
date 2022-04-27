@@ -7,13 +7,15 @@ import { Forecast } from './Forecast';
 import { Location } from './Location';
 import styles from '../styles/Index.module.css';
 import { Video } from './Video';
+import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 
 interface IndexProps {
   data: HourlyData;
   hasReadPermission: boolean;
+  videoData: YoutubePlaylistApiResponse;
 }
 
-export const Index = ({ hasReadPermission, data }: IndexProps) => {
+export const Index = ({ hasReadPermission, data, videoData }: IndexProps) => {
   const router = useRouter();
   if (!hasReadPermission) {
     return <Login redirectPath={router.asPath} />;
@@ -26,7 +28,7 @@ export const Index = ({ hasReadPermission, data }: IndexProps) => {
         <Search />
         <Location />
         <Forecast data={data} />
-        <Video />
+        <Video videoData={videoData} />
       </main>
     </>
   );
