@@ -13,6 +13,13 @@ export const Video = ({ videoData }: VideoProps) => {
     ssr: false,
   });
 
+  const onPlay = () => {
+    if (document) {
+      const video = document.querySelector('iframe') as HTMLIFrameElement;
+      video.requestFullscreen();
+    }
+  };
+
   return (
     <DraggableTile>
       <h2>UK Video Forecast</h2>
@@ -20,6 +27,7 @@ export const Video = ({ videoData }: VideoProps) => {
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${videoData.items[0].snippet.resourceId.videoId}`}
           controls={true}
+          onPlay={onPlay}
         />
       </div>
     </DraggableTile>
