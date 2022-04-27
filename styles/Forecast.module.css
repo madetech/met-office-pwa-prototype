@@ -30,3 +30,8 @@
   height: 100%;
   text-decoration: underline;
 }
+
+.lastUpdated {
+  font-size: smaller;
+  text-align: right;
+}

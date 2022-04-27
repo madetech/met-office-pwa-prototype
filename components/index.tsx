@@ -20,12 +20,14 @@ export const Index = ({ hasReadPermission, data }: IndexProps) => {
   }
 
   return (
-    <main className={styles.pageContainer}>
+    <>
       <Navigation />
-      <Search />
-      <Location />
-      <Forecast data={data} />
-      <Video />
-    </main>
+      <main className={styles.pageContainer}>
+        <Search />
+        <Location />
+        <Forecast data={data} />
+        <Video />
+      </main>
+    </>
   );
 };

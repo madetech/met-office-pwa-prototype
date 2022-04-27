@@ -25,11 +25,14 @@ interface ForecastProps {
 
 export const Forecast = ({ data }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
+  const [lastUpdated, setLastUpdated] = useState(new Date());
 
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
   const placeName = forecastData.features[0].properties.location.name;
+  // const lastUpdatedTime = `${lastUpdated.getHours()}:${lastUpdated.getMinutes()}`;
+  const lastUpdatedTime = lastUpdated.toLocaleTimeString();
 
   const currenTimeMinusOneHour = new Date(Date.now());
   currenTimeMinusOneHour.setMinutes(1);
@@ -40,6 +43,7 @@ export const Forecast = ({ data }: ForecastProps) => {
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
     setForecastData(res.data);
+    setLastUpdated(new Date());
   };
 
   const forecasts = forecastData.features[0].properties.timeSeries
@@ -70,6 +74,8 @@ export const Forecast = ({ data }: ForecastProps) => {
           return <Timeslot forecast={forecast} key={forecast.time} />;
         })}
       </section>
+
+      <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p>
     </section>
   );
 };
