@@ -1,15 +1,16 @@
-.locationData {
+.heading {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.locationName {
+  margin-bottom: 0;
 }
 
 .locationPosition {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
   font-size: smaller;
 }
 
@@ -19,4 +20,13 @@
   justify-content: flex-start;
   overflow: scroll;
   white-space: nowrap;
+}
+
+.refresh {
+  background-color: inherit;
+  border: none;
+  padding: 1rem 0;
+  cursor: pointer;
+  height: 100%;
+  text-decoration: underline;
 }
