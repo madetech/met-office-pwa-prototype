@@ -21,11 +21,11 @@ describe('forecast', () => {
     const expectedLatitude = `50.2113${degreesSymbol}N`;
     const expectedLongitude = `5.4813${degreesSymbol}W`;
 
-    const latitude = screen.getByText(`Lat: ${expectedLatitude}`);
-    const longitude = screen.getByText(`Long: ${expectedLongitude}`);
+    const latlong = screen.getByText(
+      `Lat: ${expectedLatitude} / Long: ${expectedLongitude}`
+    );
 
-    expect(latitude).toBeInTheDocument();
-    expect(longitude).toBeInTheDocument();
+    expect(latlong).toBeInTheDocument();
   });
 
   it('should display 15 timeslots for the hourly data', () => {
