@@ -1,38 +1,47 @@
+import React, { useState, useEffect, Fragment } from 'react';
+import { ImCompass } from 'react-icons/im';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { HourlyData } from '../../interfaces/api-data-hourly';
+import { Forecast } from '../Forecast';
 import styles from '../../styles/Location.module.css';
 
 export const Location = () => {
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
   const [currentAddress, setCurrentAddress] = useState<string>('');
+  const [data, setData] = useState<HourlyData | null>(null);
 
   useEffect(() => {
     const getAddress = async () => {
-      if (latitude === null) {
+      if (data === null) {
         if ('geolocation' in navigator) {
-          navigator.geolocation.getCurrentPosition(async function (position) {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-
+          navigator.geolocation.watchPosition(async function (position) {
             const address = await axios.get<string>(
               `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
             );
 
             setCurrentAddress(address.data);
+
+            const currentForecast = await axios.get<HourlyData>(
+              `/api/get-weather-forecast?frequency=hourly&latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
+            );
+
+            setData(currentForecast.data);
           });
         }
       }
     };
 
     getAddress();
-  }, [latitude]);
+  }, [data]);
 
-  if (currentAddress) {
+  if (data) {
     return (
-      <div className={styles.address}>
-        {currentAddress} (lat: {latitude}/lng: {longitude})
-      </div>
+      <Fragment>
+        <div className={styles.location}>
+          <ImCompass />
+          <span className={styles.address}>{currentAddress}</span>
+        </div>
+        <Forecast data={data} />
+      </Fragment>
     );
   }
 

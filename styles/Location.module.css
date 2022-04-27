@@ -1,5 +1,10 @@
-.address {
+.location {
   color: white;
+  padding: 2px 0;
+}
+
+.address {
+  margin-left: 5px;
 }
 
 .notFound {
