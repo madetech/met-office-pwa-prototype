@@ -12,6 +12,10 @@ const getDatePresentation = (isoTime: string) => {
   return dateTime.toString().substring(0, 10);
 };
 
+const formatTemperature = (degrees: number) => {
+  return `${Math.round(degrees)}${String.fromCharCode(176)}`;
+};
+
 export const Dayslot = ({ forecast }: DayslotProps) => {
   return (
     <article className={styles.timeslot} data-testid="timeslot">
@@ -19,6 +23,8 @@ export const Dayslot = ({ forecast }: DayslotProps) => {
       <div>
         <WeatherIcon iconNumber={forecast.nightSignificantWeatherCode} />
       </div>
+      <p>{formatTemperature(forecast.dayMaxScreenTemperature)}</p>
+      <p>{formatTemperature(forecast.nightMinScreenTemperature)}</p>
     </article>
   );
 };

@@ -21,4 +21,20 @@ describe('dayslot', () => {
 
     expect(formattedDate).toBeInTheDocument();
   });
+
+  it('should display each daily forecast maximum temperature', () => {
+    render(<Dayslot forecast={forecast} />);
+
+    const maxTemperature = screen.getByText('14°');
+
+    expect(maxTemperature).toBeInTheDocument();
+  });
+
+  it('should display each daily forecast minimum temperature', () => {
+    render(<Dayslot forecast={forecast} />);
+
+    const minTemperature = screen.getByText('5°');
+
+    expect(minTemperature).toBeInTheDocument();
+  });
 });
