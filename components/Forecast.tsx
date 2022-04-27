@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { HourlyData } from '../interfaces/api-data-hourly';
-import getForecastData from '../requests/getForecastData';
 import styles from '../styles/Forecast.module.css';
 import { Timeslot } from './Timeslot';
 import { DraggableTile } from './DraggableTile';
@@ -32,7 +31,6 @@ export const Forecast = ({ data }: ForecastProps) => {
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
   const placeName = forecastData.features[0].properties.location.name;
-  // const lastUpdatedTime = `${lastUpdated.getHours()}:${lastUpdated.getMinutes()}`;
   const lastUpdatedTime = lastUpdated.toLocaleTimeString();
 
   const currenTimeMinusOneHour = new Date(Date.now());
