@@ -1,13 +1,5 @@
-import { ReactChild, ReactFragment, ReactPortal } from 'react';
+import { ReactChild } from 'react';
 
-export function DraggableTile(props: {
-  children:
-    | boolean
-    | ReactChild
-    | ReactFragment
-    | ReactPortal
-    | null
-    | undefined;
-}) {
+export function DraggableTile(props: { children: ReactChild | ReactChild[] }) {
   return <section className="tile">{props.children}</section>;
 }
