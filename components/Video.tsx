@@ -19,6 +19,7 @@ export const Video = ({ videoData }: VideoProps) => {
       <div className={styles.videoContainer}>
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${videoData.items[0].snippet.resourceId.videoId}`}
+          controls={true}
         />
       </div>
     </DraggableTile>
