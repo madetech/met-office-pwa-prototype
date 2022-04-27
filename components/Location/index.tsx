@@ -1,8 +1,9 @@
-import axios from 'axios';
 import React, { useState, useEffect, Fragment } from 'react';
+import { ImCompass } from 'react-icons/im';
+import axios from 'axios';
 import { HourlyData } from '../../interfaces/api-data-hourly';
-import styles from '../../styles/Location.module.css';
 import { Forecast } from '../Forecast';
+import styles from '../../styles/Location.module.css';
 
 export const Location = () => {
   const [currentAddress, setCurrentAddress] = useState<string>('');
@@ -35,7 +36,10 @@ export const Location = () => {
   if (data) {
     return (
       <Fragment>
-        <div className={styles.address}>{currentAddress}</div>
+        <div className={styles.location}>
+          <ImCompass />
+          <span className={styles.address}>{currentAddress}</span>
+        </div>
         <Forecast data={data} />
       </Fragment>
     );
