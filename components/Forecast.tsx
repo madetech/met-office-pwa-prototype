@@ -1,6 +1,7 @@
 import { HourlyData } from '../interfaces/api-data-hourly';
 import styles from '../styles/Forecast.module.css';
 import { Timeslot } from './Timeslot';
+import { DraggableTile } from './DraggableTile';
 
 const degreesSymbol = String.fromCharCode(176);
 
@@ -39,7 +40,7 @@ export const Forecast = ({ data }: ForecastProps) => {
     .slice(0, 15);
 
   return (
-    <section className="tile">
+    <DraggableTile>
       <article className={styles.locationData}>
         <h2 className={styles.locationName}>{placeName}</h2>
         <div className={styles.locationPosition}>
@@ -53,6 +54,6 @@ export const Forecast = ({ data }: ForecastProps) => {
           return <Timeslot forecast={forecast} key={forecast.time} />;
         })}
       </section>
-    </section>
+    </DraggableTile>
   );
 };

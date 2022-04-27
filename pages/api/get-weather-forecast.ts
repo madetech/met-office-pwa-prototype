@@ -23,14 +23,11 @@ export default async function handler(
       },
     })
     .then(function (res) {
-      console.log('Data: ', res.data);
       return res.data;
     })
     .catch(function (error) {
       console.log('Error', error.message);
     });
-
-  console.log('Response data: ', response);
 
   res.status(200).json(response);
 }
