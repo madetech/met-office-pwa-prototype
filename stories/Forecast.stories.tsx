@@ -1,5 +1,5 @@
 import React from 'react';
-import { HourlyData } from '../interfaces/api-data-hourly';
+import { HourlyDataLastUpdated } from '../interfaces/api-data-hourly';
 import { ComponentStory } from '@storybook/react';
 
 import { Forecast } from '../components/Forecast';
@@ -15,8 +15,9 @@ const Template: ComponentStory<typeof Forecast> = (args) => (
   <Forecast {...args} />
 );
 
-const hourlyData: HourlyData = {
+const hourlyData: HourlyDataLastUpdated = {
   type: 'FeatureCollection',
+  lastUpdated: new Date('2022-04-28T11:13:54.703Z').toISOString(),
   features: [
     {
       type: 'Feature',
