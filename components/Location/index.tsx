@@ -20,9 +20,6 @@ export const Location = () => {
       if (data === null) {
         if ('geolocation' in navigator) {
           navigator.geolocation.watchPosition(async function (position) {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-
             const address = await axios.get<string>(
               `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
             );
@@ -44,28 +41,6 @@ export const Location = () => {
 
     getAddress();
   }, [data]);
-
-  // const setForecast = async (frequency: string, lat: number, lng: number) => {
-  //   console.log('Frequency: ', frequency);
-
-  //   if (
-  //     typeof frequency === 'undefined' ||
-  //     frequency === null ||
-  //     frequency === ''
-  //   ) {
-  //     frequency = 'hourly';
-  //   }
-
-  //   console.log('After if statement - frequency: ', frequency);
-
-  //   const currentForecast = await axios.get<HourlyData>(
-  //     `/api/get-weather-forecast?frequency=${frequency}&latitude=${lat}&longitude=${lng}`
-  //   );
-
-  //   console.log('Forecast data: ', currentForecast.data);
-
-  //   setData(currentForecast.data);
-  // };
 
   if (data) {
     return (
