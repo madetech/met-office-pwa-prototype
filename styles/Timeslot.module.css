@@ -1,10 +1,19 @@
 .timeslot {
-  padding-right: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .timeslot p {
   padding: 0.3rem 0;
   text-align: center;
   margin: 0;
-  line-height: 16px;
+  flex-basis: 25%;
+}
+
+.timeslot img {
+  width: 40px;
+  flex-basis: 25%;
 }

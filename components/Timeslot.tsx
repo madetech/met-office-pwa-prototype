@@ -29,9 +29,7 @@ export const Timeslot = ({ forecast }: TimeslotProps) => {
   return (
     <article className={styles.timeslot} data-testid="timeslot">
       <p>{time}</p>
-      <div>
-        <WeatherIcon iconNumber={forecast.significantWeatherCode} />
-      </div>
+      <WeatherIcon iconNumber={forecast.significantWeatherCode} />
       <p>{precipProb}</p>
       <p>{temperature}</p>
     </article>

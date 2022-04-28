@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 interface WeatherIconProps {
   iconNumber: number;
 }
@@ -11,7 +9,7 @@ export const WeatherIcon = ({ iconNumber }: WeatherIconProps) => {
 const icons = new Map([
   [
     0,
-    <Image
+    <img
       src={`/assets/weather-icons/0-clear-night.svg`}
       width={48}
       height={48}
@@ -21,7 +19,7 @@ const icons = new Map([
   ],
   [
     1,
-    <Image
+    <img
       src={`/assets/weather-icons/1-sunny-day.svg`}
       width={48}
       height={48}
@@ -31,7 +29,7 @@ const icons = new Map([
   ],
   [
     2,
-    <Image
+    <img
       src={`/assets/weather-icons/2-partly-cloudy-night.svg`}
       width={48}
       height={48}
@@ -41,7 +39,7 @@ const icons = new Map([
   ],
   [
     3,
-    <Image
+    <img
       src={`/assets/weather-icons/3-sunny-intervals.svg`}
       width={48}
       height={48}
@@ -51,7 +49,7 @@ const icons = new Map([
   ],
   [
     5,
-    <Image
+    <img
       src={`/assets/weather-icons/5-mist.svg`}
       width={48}
       height={48}
@@ -61,7 +59,7 @@ const icons = new Map([
   ],
   [
     6,
-    <Image
+    <img
       src={`/assets/weather-icons/6-fog.svg`}
       width={48}
       height={48}
@@ -71,7 +69,7 @@ const icons = new Map([
   ],
   [
     7,
-    <Image
+    <img
       src={`/assets/weather-icons/7-cloudy.svg`}
       width={48}
       height={48}
@@ -81,7 +79,7 @@ const icons = new Map([
   ],
   [
     8,
-    <Image
+    <img
       src={`/assets/weather-icons/8-overcast.svg`}
       width={48}
       height={48}
@@ -91,7 +89,7 @@ const icons = new Map([
   ],
   [
     9,
-    <Image
+    <img
       src={`/assets/weather-icons/9-light-rain-shower-night.svg`}
       width={48}
       height={48}
@@ -101,7 +99,7 @@ const icons = new Map([
   ],
   [
     10,
-    <Image
+    <img
       src={`/assets/weather-icons/10-light-rain-shower-day.svg`}
       width={48}
       height={48}
@@ -111,7 +109,7 @@ const icons = new Map([
   ],
   [
     11,
-    <Image
+    <img
       src={`/assets/weather-icons/11-drizzle.svg`}
       width={48}
       height={48}
@@ -121,7 +119,7 @@ const icons = new Map([
   ],
   [
     12,
-    <Image
+    <img
       src={`/assets/weather-icons/12-light-rain.svg`}
       width={48}
       height={48}
@@ -131,7 +129,7 @@ const icons = new Map([
   ],
   [
     13,
-    <Image
+    <img
       src={`/assets/weather-icons/13-heavy-rain-shower-night.svg`}
       width={48}
       height={48}
@@ -141,7 +139,7 @@ const icons = new Map([
   ],
   [
     14,
-    <Image
+    <img
       src={`/assets/weather-icons/14-heavy-rain-shower-day.svg`}
       width={48}
       height={48}
@@ -151,7 +149,7 @@ const icons = new Map([
   ],
   [
     15,
-    <Image
+    <img
       src={`/assets/weather-icons/15-heavy-rain.svg`}
       width={48}
       height={48}
@@ -161,7 +159,7 @@ const icons = new Map([
   ],
   [
     16,
-    <Image
+    <img
       src={`/assets/weather-icons/16-sleet-shower-night.svg`}
       width={48}
       height={48}
@@ -171,7 +169,7 @@ const icons = new Map([
   ],
   [
     17,
-    <Image
+    <img
       src={`/assets/weather-icons/17-sleet-shower-day.svg`}
       width={48}
       height={48}
@@ -181,7 +179,7 @@ const icons = new Map([
   ],
   [
     18,
-    <Image
+    <img
       src={`/assets/weather-icons/18-sleet.svg`}
       width={48}
       height={48}
@@ -191,7 +189,7 @@ const icons = new Map([
   ],
   [
     19,
-    <Image
+    <img
       src={`/assets/weather-icons/19-hail-shower-night.svg`}
       width={48}
       height={48}
@@ -201,7 +199,7 @@ const icons = new Map([
   ],
   [
     20,
-    <Image
+    <img
       src={`/assets/weather-icons/20-hail-shower-day.svg`}
       width={48}
       height={48}
@@ -211,7 +209,7 @@ const icons = new Map([
   ],
   [
     21,
-    <Image
+    <img
       src={`/assets/weather-icons/21-hail.svg`}
       width={48}
       height={48}
@@ -221,7 +219,7 @@ const icons = new Map([
   ],
   [
     22,
-    <Image
+    <img
       src={`/assets/weather-icons/22-light-snow-shower-night.svg`}
       width={48}
       height={48}
@@ -231,7 +229,7 @@ const icons = new Map([
   ],
   [
     23,
-    <Image
+    <img
       src={`/assets/weather-icons/23-light-snow-shower-day.svg`}
       width={48}
       height={48}
@@ -241,7 +239,7 @@ const icons = new Map([
   ],
   [
     24,
-    <Image
+    <img
       src={`/assets/weather-icons/24-light-snow.svg`}
       width={48}
       height={48}
@@ -251,7 +249,7 @@ const icons = new Map([
   ],
   [
     25,
-    <Image
+    <img
       src={`/assets/weather-icons/25-heavy-snow-shower-night.svg`}
       width={48}
       height={48}
@@ -261,7 +259,7 @@ const icons = new Map([
   ],
   [
     26,
-    <Image
+    <img
       src={`/assets/weather-icons/26-heavy-snow-shower-day.svg`}
       width={48}
       height={48}
@@ -271,7 +269,7 @@ const icons = new Map([
   ],
   [
     27,
-    <Image
+    <img
       src={`/assets/weather-icons/27-heavy-snow.svg`}
       width={48}
       height={48}
@@ -281,7 +279,7 @@ const icons = new Map([
   ],
   [
     28,
-    <Image
+    <img
       src={`/assets/weather-icons/28-thunder-shower-night.svg`}
       width={48}
       height={48}
@@ -291,7 +289,7 @@ const icons = new Map([
   ],
   [
     29,
-    <Image
+    <img
       src={`/assets/weather-icons/29-thunder-shower-day.svg`}
       width={48}
       height={48}
@@ -301,7 +299,7 @@ const icons = new Map([
   ],
   [
     30,
-    <Image
+    <img
       src={`/assets/weather-icons/30-thunder.svg`}
       width={48}
       height={48}
