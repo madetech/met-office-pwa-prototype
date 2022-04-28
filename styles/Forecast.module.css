@@ -35,3 +35,34 @@
   font-size: smaller;
   text-align: right;
 }
+
+.btnWrapper {
+  /* border: 1px solid #000; */
+}
+
+.btn {
+  padding: 0.6em;
+  /* border-radius: 8px; */
+  /* color:#fff;
+  background-color:#1976d2; */
+  font-size: 1.1em;
+  border: 0;
+  cursor: pointer;
+  /* margin: 1em; */
+  width: 100px;
+}
+
+.btnLeft {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.btnRight {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.btnActive {
+  color: #fff;
+  background-color: #20455c;
+}

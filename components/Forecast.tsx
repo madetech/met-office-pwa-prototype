@@ -120,8 +120,25 @@ export const Forecast = ({ data }: ForecastProps) => {
             Lat: {lat} / Long: {long}
           </span>
         </article>
-        <button onClick={handleHourlyClick}>Hourly</button>
-        <button onClick={handleDailyClick}>Daily</button>
+        <div className={styles.btnWrapper}>
+          <button
+            className={`${styles.btn} ${styles.btnLeft} ${
+              isHourlyData ? styles.btnActive : ''
+            }`}
+            onClick={handleHourlyClick}
+          >
+            Hourly
+          </button>
+          <button
+            className={`${styles.btn} ${styles.btnRight} ${
+              isHourlyData ? '' : styles.btnActive
+            }`}
+            onClick={handleDailyClick}
+          >
+            Daily
+          </button>
+        </div>
+
         <button className={styles.refresh} onClick={handleRefresh}>
           Refresh
         </button>
