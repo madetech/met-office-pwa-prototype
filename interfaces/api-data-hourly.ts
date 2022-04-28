@@ -46,3 +46,8 @@ export interface HourlyData {
   features: Feature[];
   type: string;
 }
+
+export interface HourlyDataLastUpdated extends HourlyData {
+  // ISO8601 represented datetime string
+  lastUpdated: string;
+}

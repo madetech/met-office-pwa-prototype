@@ -1,4 +1,7 @@
-import { HourlyData } from '../interfaces/api-data-hourly';
+import {
+  HourlyData,
+  HourlyDataLastUpdated,
+} from '../interfaces/api-data-hourly';
 import { Navigation } from './Navigation';
 import { useRouter } from 'next/router';
 import { Login } from './login';
@@ -10,7 +13,7 @@ import { Video } from './Video';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 
 interface IndexProps {
-  data: HourlyData;
+  data: HourlyDataLastUpdated;
   hasReadPermission: boolean;
   videoData: YoutubePlaylistApiResponse;
 }

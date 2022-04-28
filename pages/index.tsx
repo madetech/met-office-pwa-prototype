@@ -1,12 +1,12 @@
 import getForecastData from '../requests/getForecastData';
-import { HourlyData } from '../interfaces/api-data-hourly';
+import { HourlyDataLastUpdated } from '../interfaces/api-data-hourly';
 import { Index } from '../components';
 import { getLatestVideoData } from '../requests/getLatestVideoData';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 
 interface HomeProps {
   hasReadPermission: boolean;
-  data: HourlyData;
+  data: HourlyDataLastUpdated;
   videoData: YoutubePlaylistApiResponse;
 }
 
@@ -31,5 +31,13 @@ export const getServerSideProps = async () => {
   const { data } = await getForecastData('hourly', cambridge[0], cambridge[1]);
   const { data: videoData } = await getLatestVideoData();
   if (!data) return { notFound: true };
-  return { props: { data, videoData } };
+  return {
+    props: {
+      data: {
+        ...data,
+        lastUpdated: new Date().toISOString(),
+      },
+      videoData,
+    },
+  };
 };
