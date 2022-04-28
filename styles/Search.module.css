@@ -18,12 +18,14 @@
 
 .search input {
   border-radius: 0;
-  padding: 5px;
+  padding: 8px;
+  /* padding: 14px; */
 }
 
 .search input[type='text'] {
   flex-basis: 80%;
   max-width: 400px;
+  padding-left: 15px;
 }
 
 .search input[type='submit'] {
