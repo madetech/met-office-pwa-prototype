@@ -23,11 +23,7 @@ const formatLongitude = (longitude: number) => {
 };
 
 interface ForecastProps {
-<<<<<<< HEAD
   data: HourlyDataLastUpdated;
-=======
-  data: HourlyData;
->>>>>>> 9418c5e... Amend forecast to enable switching from hourly to daily
 }
 
 export const Forecast = ({ data }: ForecastProps) => {
@@ -37,16 +33,12 @@ export const Forecast = ({ data }: ForecastProps) => {
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
   const placeName = forecastData.features[0].properties.location.name;
-<<<<<<< HEAD
   const lastUpdatedTime = new Date(
     forecastData.lastUpdated
   ).toLocaleTimeString();
 
   const currenTimeMinusOneHour = new Date(Date.now());
-=======
-  const lastUpdatedTime = lastUpdated.toLocaleTimeString();
   const currentTimeMinusOneHour = new Date(Date.now());
->>>>>>> 9418c5e... Amend forecast to enable switching from hourly to daily
 
   currentTimeMinusOneHour.setMinutes(1);
   currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
@@ -63,7 +55,6 @@ export const Forecast = ({ data }: ForecastProps) => {
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
     setForecastData(res.data);
-    setLastUpdated(new Date());
   };
 
   const handleDailyClick = async () => {
@@ -71,7 +62,6 @@ export const Forecast = ({ data }: ForecastProps) => {
       `/api/get-weather-forecast?frequency=daily&latitude=${coords[1]}&longitude=${coords[0]}`
     );
     setForecastData(res.data);
-    setLastUpdated(new Date());
   };
 
   const forecasts = forecastData.features[0].properties.timeSeries
@@ -98,14 +88,11 @@ export const Forecast = ({ data }: ForecastProps) => {
           Refresh
         </button>
       </section>
-
       <section className={styles.timeslots}>
         {forecasts.map((forecast) => {
           return <Timeslot forecast={forecast} key={forecast.time} />;
         })}
       </section>
-
-      {/* <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p> */}
     </DraggableTile>
   );
 };
