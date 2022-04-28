@@ -1,7 +1,4 @@
-import {
-  HourlyData,
-  HourlyDataLastUpdated,
-} from '../interfaces/api-data-hourly';
+import { HourlyDataLastUpdated } from '../interfaces/api-data-hourly';
 import { Navigation } from './Navigation';
 import { useRouter } from 'next/router';
 import { Login } from './login';

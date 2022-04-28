@@ -50,5 +50,5 @@ export const Location = () => {
     );
   }
 
-  return <></>;
+  return <div data-testid="address-not-found" className={styles.notFound} />;
 };
