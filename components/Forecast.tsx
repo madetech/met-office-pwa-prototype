@@ -23,7 +23,11 @@ const formatLongitude = (longitude: number) => {
 };
 
 interface ForecastProps {
+<<<<<<< HEAD
   data: HourlyDataLastUpdated;
+=======
+  data: HourlyData;
+>>>>>>> 9418c5e... Amend forecast to enable switching from hourly to daily
 }
 
 export const Forecast = ({ data }: ForecastProps) => {
@@ -33,14 +37,19 @@ export const Forecast = ({ data }: ForecastProps) => {
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
   const placeName = forecastData.features[0].properties.location.name;
+<<<<<<< HEAD
   const lastUpdatedTime = new Date(
     forecastData.lastUpdated
   ).toLocaleTimeString();
 
   const currenTimeMinusOneHour = new Date(Date.now());
+=======
+  const lastUpdatedTime = lastUpdated.toLocaleTimeString();
+  const currentTimeMinusOneHour = new Date(Date.now());
+>>>>>>> 9418c5e... Amend forecast to enable switching from hourly to daily
 
-  currenTimeMinusOneHour.setMinutes(1);
-  currenTimeMinusOneHour.setHours(currenTimeMinusOneHour.getHours() - 1);
+  currentTimeMinusOneHour.setMinutes(1);
+  currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
 
   const handleRefresh = async () => {
     const res = await axios.get<HourlyData>(
@@ -49,9 +58,25 @@ export const Forecast = ({ data }: ForecastProps) => {
     setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
   };
 
+  const handleHourlyClick = async () => {
+    const res = await axios.get<HourlyData>(
+      `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
+    );
+    setForecastData(res.data);
+    setLastUpdated(new Date());
+  };
+
+  const handleDailyClick = async () => {
+    const res = await axios.get<HourlyData>(
+      `/api/get-weather-forecast?frequency=daily&latitude=${coords[1]}&longitude=${coords[0]}`
+    );
+    setForecastData(res.data);
+    setLastUpdated(new Date());
+  };
+
   const forecasts = forecastData.features[0].properties.timeSeries
     .filter((forecast) => {
-      if (Number(new Date(forecast.time)) < Number(currenTimeMinusOneHour)) {
+      if (Number(new Date(forecast.time)) < Number(currentTimeMinusOneHour)) {
         return false;
       }
       return true;
@@ -67,6 +92,8 @@ export const Forecast = ({ data }: ForecastProps) => {
             Lat: {lat} / Long: {long}
           </span>
         </article>
+        <button onClick={handleHourlyClick}>Hourly</button>
+        <button onClick={handleDailyClick}>Daily</button>
         <button className={styles.refresh} onClick={handleRefresh}>
           Refresh
         </button>
@@ -78,7 +105,7 @@ export const Forecast = ({ data }: ForecastProps) => {
         })}
       </section>
 
-      <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p>
+      {/* <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p> */}
     </DraggableTile>
   );
 };

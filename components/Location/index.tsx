@@ -22,7 +22,6 @@ export const Location = () => {
           navigator.geolocation.watchPosition(async function (position) {
             setLatitude(position.coords.latitude);
             setLongitude(position.coords.longitude);
-            setFrequency('hourly');
 
             const address = await axios.get<string>(
               `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
@@ -44,31 +43,29 @@ export const Location = () => {
     };
 
     getAddress();
-  }, [data, frequency]);
+  }, [data]);
 
-  const handleHourlyClick = async () => {
-    setFrequency('hourly');
+  // const setForecast = async (frequency: string, lat: number, lng: number) => {
+  //   console.log('Frequency: ', frequency);
 
-    setForecast('hourly', latitude, longitude);
-  };
+  //   if (
+  //     typeof frequency === 'undefined' ||
+  //     frequency === null ||
+  //     frequency === ''
+  //   ) {
+  //     frequency = 'hourly';
+  //   }
 
-  const handleDailyClick = async () => {
-    setFrequency('daily');
+  //   console.log('After if statement - frequency: ', frequency);
 
-    setForecast('daily', latitude, longitude);
-  };
+  //   const currentForecast = await axios.get<HourlyData>(
+  //     `/api/get-weather-forecast?frequency=${frequency}&latitude=${lat}&longitude=${lng}`
+  //   );
 
-  const setForecast = async (frequency: string, lat: number, lng: number) => {
-    if (typeof frequency === 'undefined' || frequency === null) {
-      frequency = 'hourly';
-    }
+  //   console.log('Forecast data: ', currentForecast.data);
 
-    const currentForecast = await axios.get<HourlyData>(
-      `/api/get-weather-forecast?frequency=${frequency}&latitude=${lat}&longitude=${lng}`
-    );
-
-    setData(currentForecast.data);
-  };
+  //   setData(currentForecast.data);
+  // };
 
   if (data) {
     return (
