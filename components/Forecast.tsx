@@ -38,6 +38,7 @@ export const Forecast = ({ data }: ForecastProps) => {
   ).toLocaleTimeString();
 
   const currenTimeMinusOneHour = new Date(Date.now());
+
   currenTimeMinusOneHour.setMinutes(1);
   currenTimeMinusOneHour.setHours(currenTimeMinusOneHour.getHours() - 1);
 
