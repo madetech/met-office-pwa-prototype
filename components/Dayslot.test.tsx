@@ -3,16 +3,12 @@ import { Dayslot } from './Dayslot';
 import { DailyForecast } from '../interfaces/api-data-daily';
 
 describe('dayslot', () => {
-  let forecast: DailyForecast;
-
-  beforeEach(() => {
-    forecast = {
-      time: '2022-04-26T00:00Z',
-      nightSignificantWeatherCode: 7,
-      dayMaxScreenTemperature: 13.69,
-      nightMinScreenTemperature: 4.81,
-    };
-  });
+  const forecast: DailyForecast = {
+    time: '2022-04-26T00:00Z',
+    nightSignificantWeatherCode: 7,
+    dayMaxScreenTemperature: 13.69,
+    nightMinScreenTemperature: 4.81,
+  };
 
   it('should display forecast date', () => {
     render(<Dayslot forecast={forecast} />);
