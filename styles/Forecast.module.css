@@ -35,3 +35,47 @@
   font-size: smaller;
   text-align: right;
 }
+
+.btnWrapper {
+  width: auto;
+}
+
+.btn {
+  padding: 0.6em;
+  font-size: 1.1em;
+  border: 0;
+  cursor: pointer;
+  width: 100px;
+}
+
+.btnLeft {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.btnRight {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.btnActive {
+  color: #fff;
+  background-color: #20455c;
+}
+
+@media screen and (max-width: 425px) {
+  .btn {
+    padding: 0.2em;
+  }
+
+  .btnLeft {
+    border-radius: 8px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+  }
+
+  .btnRight {
+    border-radius: 8px;
+    border-radius: 8px;
+  }
+}

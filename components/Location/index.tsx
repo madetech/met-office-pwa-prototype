@@ -20,6 +20,7 @@ export const Location = () => {
             const address = await axios.get<string>(
               `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
             );
+
             const currentForecast = await axios.get<HourlyData>(
               `/api/get-weather-forecast?frequency=hourly&latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
             );
@@ -36,7 +37,7 @@ export const Location = () => {
     };
 
     getAddress();
-  }, [data, currentAddress]);
+  }, [data]);
 
   if (data) {
     return (

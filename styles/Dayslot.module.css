@@ -1,0 +1,15 @@
+.dayslot {
+  padding: 0 1rem;
+  border-right: 1px solid #294b60;
+  text-align: center;
+}
+
+.dayslot p {
+  padding: 0.3rem 0 0.3rem 0.3rem;
+  margin: 0;
+  line-height: 16px;
+}
+
+.maxTemp {
+  font-size: x-large;
+}

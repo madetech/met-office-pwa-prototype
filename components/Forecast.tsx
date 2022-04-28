@@ -4,9 +4,11 @@ import {
   HourlyData,
   HourlyDataLastUpdated,
 } from '../interfaces/api-data-hourly';
-import styles from '../styles/Forecast.module.css';
-import { Timeslot } from './Timeslot';
+import { DailyData, DailyForecast } from '../interfaces/api-data-daily';
 import { DraggableTile } from './DraggableTile';
+import { Timeslot } from './Timeslot';
+import { Dayslot } from './Dayslot';
+import styles from '../styles/Forecast.module.css';
 
 const degreesSymbol = String.fromCharCode(176);
 
@@ -28,7 +30,8 @@ interface ForecastProps {
 
 export const Forecast = ({ data }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
-
+  const [forecastDailyData, setForecastDailyData] = useState<DailyData>();
+  const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
@@ -36,26 +39,52 @@ export const Forecast = ({ data }: ForecastProps) => {
   const lastUpdatedTime = new Date(
     forecastData.lastUpdated
   ).toLocaleTimeString();
-
-  const currenTimeMinusOneHour = new Date(Date.now());
-  currenTimeMinusOneHour.setMinutes(1);
-  currenTimeMinusOneHour.setHours(currenTimeMinusOneHour.getHours() - 1);
+  const currentTimeMinusOneHour = new Date(Date.now());
+  currentTimeMinusOneHour.setMinutes(1);
+  currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
 
   const handleRefresh = async () => {
     const res = await axios.get<HourlyData>(
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
+
     setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
+    setIsHourlyData(true);
+  };
+
+  const handleHourlyClick = async () => {
+    const res = await axios.get<HourlyData>(
+      `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
+    );
+    setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
+
+    setIsHourlyData(true);
+  };
+
+  const handleDailyClick = async () => {
+    const res = await axios.get<DailyData>(
+      `/api/get-weather-forecast?frequency=daily&latitude=${coords[1]}&longitude=${coords[0]}`
+    );
+
+    setForecastDailyData(res.data);
+
+    setIsHourlyData(false);
   };
 
   const forecasts = forecastData.features[0].properties.timeSeries
     .filter((forecast) => {
-      if (Number(new Date(forecast.time)) < Number(currenTimeMinusOneHour)) {
+      if (Number(new Date(forecast.time)) < Number(currentTimeMinusOneHour)) {
         return false;
       }
       return true;
     })
     .slice(0, 15);
+
+  let dailyForecasts: DailyForecast[] = [];
+  if (forecastDailyData !== undefined) {
+    dailyForecasts =
+      forecastDailyData.features[0].properties.timeSeries.slice(1);
+  }
 
   return (
     <DraggableTile>
@@ -66,16 +95,43 @@ export const Forecast = ({ data }: ForecastProps) => {
             Lat: {lat} / Long: {long}
           </span>
         </article>
+        <div className={styles.btnWrapper}>
+          <button
+            className={`${styles.btn} ${styles.btnLeft} ${
+              isHourlyData ? styles.btnActive : ''
+            }`}
+            onClick={handleHourlyClick}
+          >
+            Hourly
+          </button>
+          <button
+            className={`${styles.btn} ${styles.btnRight} ${
+              isHourlyData ? '' : styles.btnActive
+            }`}
+            onClick={handleDailyClick}
+          >
+            Daily
+          </button>
+        </div>
+
         <button className={styles.refresh} onClick={handleRefresh}>
           Refresh
         </button>
       </section>
 
-      <section className={styles.timeslots}>
-        {forecasts.map((forecast) => {
-          return <Timeslot forecast={forecast} key={forecast.time} />;
-        })}
-      </section>
+      {isHourlyData ? (
+        <section className={styles.timeslots}>
+          {forecasts.map((forecast) => {
+            return <Timeslot forecast={forecast} key={forecast.time} />;
+          })}
+        </section>
+      ) : (
+        <section className={styles.timeslots}>
+          {dailyForecasts.map((forecast) => {
+            return <Dayslot forecast={forecast} key={forecast.time} />;
+          })}
+        </section>
+      )}
 
       <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p>
     </DraggableTile>
