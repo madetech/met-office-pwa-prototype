@@ -93,12 +93,14 @@ export const Forecast = ({ data }: ForecastProps) => {
 
   let dailyForecasts = [];
   if (forecastDailyData !== undefined) {
-    dailyForecasts = forecastDailyData.forecasts.filter((forecast) => {
-      if (new Date(forecast.time) < currentTimeMinusOneHour) {
-        return false;
+    dailyForecasts = forecastDailyData.forecasts.filter(
+      (forecast: { time: string }) => {
+        if (new Date(forecast.time) < currentTimeMinusOneHour) {
+          return false;
+        }
+        return true;
       }
-      return true;
-    });
+    );
   }
 
   return (
