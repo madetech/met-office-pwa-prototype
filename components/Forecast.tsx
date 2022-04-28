@@ -33,12 +33,8 @@ interface ForecastProps {
 
 export const Forecast = ({ data }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
-<<<<<<< HEAD
+  const [forecastDailyData, setForecastDailyData] = useState<DailyData>();
 
-=======
-  const [forecastDailyData, setForecastDailyData] = useState(data);
-  const [lastUpdated, setLastUpdated] = useState(new Date());
->>>>>>> e31d782... Add day slot to forecast
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
@@ -49,11 +45,6 @@ export const Forecast = ({ data }: ForecastProps) => {
 
   const currenTimeMinusOneHour = new Date(Date.now());
   const currentTimeMinusOneHour = new Date(Date.now());
-<<<<<<< HEAD
-=======
-  const [showLastUpdate, setShowLastUpdate] = useState<boolean>(false);
-  const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
->>>>>>> e31d782... Add day slot to forecast
 
   currentTimeMinusOneHour.setMinutes(1);
   currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
@@ -62,14 +53,12 @@ export const Forecast = ({ data }: ForecastProps) => {
     const res = await axios.get<HourlyData>(
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
-<<<<<<< HEAD
+
     setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
-=======
-    setForecastData(res.data);
     setLastUpdated(new Date());
     setShowLastUpdate(true);
     setIsHourlyData(true);
->>>>>>> e31d782... Add day slot to forecast
+
   };
 
   const handleHourlyClick = async () => {
@@ -77,26 +66,20 @@ export const Forecast = ({ data }: ForecastProps) => {
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
     setForecastData(res.data);
-<<<<<<< HEAD
-=======
-    setLastUpdated(new Date());
-    setShowLastUpdate(true);
-    setIsHourlyData(true);
->>>>>>> e31d782... Add day slot to forecast
+
+
+
   };
 
   const handleDailyClick = async () => {
     const res = await axios.get<DailyData>(
       `/api/get-weather-forecast?frequency=daily&latitude=${coords[1]}&longitude=${coords[0]}`
     );
-<<<<<<< HEAD
+
     setForecastData(res.data);
-=======
+
     setForecastDailyData(res.data);
-    setLastUpdated(new Date());
-    setShowLastUpdate(true);
-    setIsHourlyData(false);
->>>>>>> e31d782... Add day slot to forecast
+
   };
 
   const forecasts = forecastData.features[0].properties.timeSeries
@@ -108,8 +91,15 @@ export const Forecast = ({ data }: ForecastProps) => {
     })
     .slice(0, 15);
 
-  //TODO: remove yesterday from the list
-  const dailyForecasts = forecastDailyData.features[0].properties.timeSeries;
+  let dailyForecasts = [];
+  if (forecastDailyData !== undefined) {
+    dailyForecasts = forecastDailyData.forecasts.filter((forecast) => {
+      if (new Date(forecast.time) < currentTimeMinusOneHour) {
+        return false;
+      }
+      return true;
+    });
+  }
 
   return (
     <DraggableTile>
