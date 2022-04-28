@@ -1,6 +1,6 @@
 import { WeatherIcon } from './WeatherIcons';
 import { Forecast } from '../interfaces/api-data-daily';
-import styles from '../styles/Timeslot.module.css';
+import styles from '../styles/Dayslot.module.css';
 
 interface DayslotProps {
   forecast: Forecast;
@@ -18,13 +18,17 @@ const formatTemperature = (degrees: number) => {
 
 export const Dayslot = ({ forecast }: DayslotProps) => {
   return (
-    <article className={styles.timeslot} data-testid="timeslot">
+    <article className={styles.dayslot} data-testid="dayslot">
       <p>{getDatePresentation(forecast.time)}</p>
       <div>
         <WeatherIcon iconNumber={forecast.nightSignificantWeatherCode} />
       </div>
-      <p>{formatTemperature(forecast.dayMaxScreenTemperature)}</p>
-      <p>{formatTemperature(forecast.nightMinScreenTemperature)}</p>
+      <p className={styles.maxTemp}>
+        {formatTemperature(forecast.dayMaxScreenTemperature)}
+      </p>
+      <p className={styles.minTemp}>
+        {formatTemperature(forecast.nightMinScreenTemperature)}
+      </p>
     </article>
   );
 };
