@@ -9,3 +9,36 @@
   color: #888;
   margin-bottom: 0.5rem;
 }
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search input {
+  border-radius: 0;
+  padding: 8px;
+  /* padding: 14px; */
+}
+
+.search input[type='text'] {
+  flex-basis: 80%;
+  max-width: 400px;
+  padding-left: 15px;
+}
+
+.search input[type='submit'] {
+  flex-basis: 19%;
+  max-width: 100px;
+}
+
+@media screen and (min-width: 429px) {
+  .inputs {
+    justify-content: flex-start;
+  }
+
+  .search input[type='text'] {
+    margin-right: 4px;
+  }
+}

@@ -8,8 +8,10 @@ export const Search = () => {
           What location would you like to search?
           <span>eg. Town, City, Postcode.</span>
         </label>
-        <input type="text" name="searchLocation" />
-        <input type="submit" value="Search" />
+        <div className={styles.inputs}>
+          <input type="text" name="searchLocation" />
+          <input type="submit" value="Search" />
+        </div>
       </form>
     </section>
   );
