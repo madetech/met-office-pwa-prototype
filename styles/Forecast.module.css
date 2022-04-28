@@ -37,18 +37,14 @@
 }
 
 .btnWrapper {
-  /* border: 1px solid #000; */
+  width: auto;
 }
 
 .btn {
   padding: 0.6em;
-  /* border-radius: 8px; */
-  /* color:#fff;
-  background-color:#1976d2; */
   font-size: 1.1em;
   border: 0;
   cursor: pointer;
-  /* margin: 1em; */
   width: 100px;
 }
 
@@ -65,4 +61,21 @@
 .btnActive {
   color: #fff;
   background-color: #20455c;
+}
+
+@media screen and (max-width: 425px) {
+  .btn {
+    padding: 0.2em;
+  }
+
+  .btnLeft {
+    border-radius: 8px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+  }
+
+  .btnRight {
+    border-radius: 8px;
+    border-radius: 8px;
+  }
 }
