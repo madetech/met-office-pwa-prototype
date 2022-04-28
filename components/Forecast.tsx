@@ -9,14 +9,14 @@ const degreesSymbol = String.fromCharCode(176);
 
 const formatLatitude = (latitude: number) => {
   return latitude > 0
-    ? `${latitude}${degreesSymbol}N`
-    : `${latitude * -1}${degreesSymbol}S`;
+    ? `${latitude.toFixed(2)}${degreesSymbol}N`
+    : `${(latitude * -1).toFixed(2)}${degreesSymbol}S`;
 };
 
 const formatLongitude = (longitude: number) => {
   return longitude > 0
-    ? `${longitude}${degreesSymbol}E`
-    : `${longitude * -1}${degreesSymbol}W`;
+    ? `${longitude.toFixed(2)}${degreesSymbol}E`
+    : `${(longitude * -1).toFixed(2)}${degreesSymbol}W`;
 };
 
 interface ForecastProps {
