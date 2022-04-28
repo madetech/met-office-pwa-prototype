@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { Dayslot } from './Dayslot';
-import { Forecast } from '../interfaces/api-data-daily';
+import { DailyForecast } from '../interfaces/api-data-daily';
 
 describe('dayslot', () => {
-  let forecast: Forecast;
+  let forecast: DailyForecast;
 
   beforeEach(() => {
     forecast = {

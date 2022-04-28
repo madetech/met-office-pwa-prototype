@@ -1,9 +1,9 @@
 import { WeatherIcon } from './WeatherIcons';
-import { Forecast } from '../interfaces/api-data-daily';
+import { DailyForecast } from '../interfaces/api-data-daily';
 import styles from '../styles/Dayslot.module.css';
 
 interface DayslotProps {
-  forecast: Forecast;
+  forecast: DailyForecast;
 }
 
 const getDatePresentation = (isoTime: string) => {

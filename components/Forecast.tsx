@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+<<<<<<< HEAD
 
 import {
   HourlyData,
@@ -8,6 +9,10 @@ import {
 
 import { DailyData } from '../interfaces/api-data-daily';
 
+=======
+import { HourlyData } from '../interfaces/api-data-hourly';
+import { DailyData, DailyForecast } from '../interfaces/api-data-daily';
+>>>>>>> 164538b... Amend daily data for showing date
 import { DraggableTile } from './DraggableTile';
 import { Timeslot } from './Timeslot';
 import { Dayslot } from './Dayslot';
@@ -91,14 +96,12 @@ export const Forecast = ({ data }: ForecastProps) => {
     })
     .slice(0, 15);
 
-  let dailyForecasts = [];
+  let dailyForecasts: DailyForecast[] = [];
+
   if (forecastDailyData !== undefined) {
-    dailyForecasts = forecastDailyData.forecasts.filter(
+    dailyForecasts = forecastDailyData.features[0].properties.timeSeries.filter(
       (forecast: { time: string }) => {
-        if (new Date(forecast.time) < currentTimeMinusOneHour) {
-          return false;
-        }
-        return true;
+        return new Date(forecast.time) > currentTimeMinusOneHour;
       }
     );
   }
