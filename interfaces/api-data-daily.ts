@@ -4,3 +4,8 @@ export interface Forecast {
   dayMaxScreenTemperature: number;
   nightMinScreenTemperature: number;
 }
+
+export interface DailyData {
+  forecasts: Forecast[];
+  type: string;
+}
