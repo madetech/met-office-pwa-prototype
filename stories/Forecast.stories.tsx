@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof Forecast> = (args) => (
 
 const hourlyData: HourlyDataLastUpdated = {
   type: 'FeatureCollection',
-  lastUpdated: new Date('2022-04-28T11:13:54.703Z').toISOString(),
+  lastUpdated: new Date('2022-04-26T11:13:54.703Z').toISOString(),
   features: [
     {
       type: 'Feature',
