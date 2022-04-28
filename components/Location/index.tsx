@@ -9,9 +9,6 @@ import { Forecast } from '../Forecast';
 import styles from '../../styles/Location.module.css';
 
 export const Location = () => {
-  const [latitude, setLatitude] = useState<number>(999);
-  const [longitude, setLongitude] = useState<number>(999);
-  const [frequency, setFrequency] = useState<string>('');
   const [currentAddress, setCurrentAddress] = useState<string>('');
   const [data, setData] = useState<HourlyDataLastUpdated | null>(null);
 
