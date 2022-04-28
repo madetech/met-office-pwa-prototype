@@ -67,6 +67,7 @@ export const Forecast = ({ data }: ForecastProps) => {
     );
 
     setForecastDailyData(res.data);
+
     setIsHourlyData(false);
   };
 
@@ -80,17 +81,9 @@ export const Forecast = ({ data }: ForecastProps) => {
     .slice(0, 15);
 
   let dailyForecasts: DailyForecast[] = [];
-  let isFirstItem = true;
   if (forecastDailyData !== undefined) {
-    dailyForecasts = forecastDailyData.features[0].properties.timeSeries.filter(
-      () => {
-        if (isFirstItem) {
-          isFirstItem = false;
-          return false;
-        }
-        return true;
-      }
-    );
+    dailyForecasts =
+      forecastDailyData.features[0].properties.timeSeries.slice(1);
   }
 
   return (
