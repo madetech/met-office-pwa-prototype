@@ -80,11 +80,15 @@ export const Forecast = ({ data }: ForecastProps) => {
     .slice(0, 15);
 
   let dailyForecasts: DailyForecast[] = [];
-
+  let isFirstItem = true;
   if (forecastDailyData !== undefined) {
     dailyForecasts = forecastDailyData.features[0].properties.timeSeries.filter(
-      (forecast: { time: string }) => {
-        return new Date(forecast.time) > currentTimeMinusOneHour;
+      () => {
+        if (isFirstItem) {
+          isFirstItem = false;
+          return false;
+        }
+        return true;
       }
     );
   }
