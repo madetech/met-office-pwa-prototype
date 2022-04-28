@@ -18,8 +18,8 @@ describe('forecast', () => {
   it("should display the forecast data's latitude and longitude", () => {
     render(<Forecast data={hourlyData} />);
 
-    const expectedLatitude = `50.2113${degreesSymbol}N`;
-    const expectedLongitude = `5.4813${degreesSymbol}W`;
+    const expectedLatitude = `50.21${degreesSymbol}N`;
+    const expectedLongitude = `5.48${degreesSymbol}W`;
 
     const latlong = screen.getByText(
       `Lat: ${expectedLatitude} / Long: ${expectedLongitude}`
