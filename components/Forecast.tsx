@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { HourlyData } from '../interfaces/api-data-hourly';
+import {
+  HourlyData,
+  HourlyDataLastUpdated,
+} from '../interfaces/api-data-hourly';
 import styles from '../styles/Forecast.module.css';
 import { Timeslot } from './Timeslot';
 import { DraggableTile } from './DraggableTile';
@@ -20,18 +23,19 @@ const formatLongitude = (longitude: number) => {
 };
 
 interface ForecastProps {
-  data: HourlyData;
+  data: HourlyDataLastUpdated;
 }
 
 export const Forecast = ({ data }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
-  const [lastUpdated, setLastUpdated] = useState(new Date());
 
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
   const placeName = forecastData.features[0].properties.location.name;
-  const lastUpdatedTime = lastUpdated.toLocaleTimeString();
+  const lastUpdatedTime = new Date(
+    forecastData.lastUpdated
+  ).toLocaleTimeString();
 
   const currenTimeMinusOneHour = new Date(Date.now());
   currenTimeMinusOneHour.setMinutes(1);
@@ -41,8 +45,7 @@ export const Forecast = ({ data }: ForecastProps) => {
     const res = await axios.get<HourlyData>(
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
-    setForecastData(res.data);
-    setLastUpdated(new Date());
+    setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
   };
 
   const forecasts = forecastData.features[0].properties.timeSeries
