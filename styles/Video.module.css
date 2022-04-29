@@ -2,3 +2,12 @@
   display: flex;
   justify-content: center;
 }
+
+.closeIcon {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 99999999;
+  color: white;
+  display: none;
+}

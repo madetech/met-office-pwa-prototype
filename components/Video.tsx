@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 import styles from '../styles/Video.module.css';
 import { DraggableTile } from './DraggableTile';
@@ -12,10 +12,11 @@ export const Video = ({ videoData }: VideoProps) => {
   const ReactPlayer = dynamic(() => import('react-player/lazy'), {
     ssr: false,
   });
+  const [reRender, setReRender] = useState(0);
 
   const onPlay = () => {
     const videoElement = document.querySelector('iframe') as HTMLIFrameElement;
-    const closeButtonElement = document.querySelector(
+    const closeElement = document.querySelector(
       '#close-video-icon'
     ) as SVGElement;
     const bodyElement = document.querySelector('body') as HTMLBodyElement;
@@ -32,7 +33,7 @@ export const Video = ({ videoData }: VideoProps) => {
     videoElement.style.zIndex = '100';
     videoElement.style.overflow = 'hidden';
 
-    closeButtonElement.style.display = 'inline';
+    closeElement.style.display = 'inline';
 
     bodyElement.style.overflow = 'hidden';
 
@@ -41,15 +42,18 @@ export const Video = ({ videoData }: VideoProps) => {
 
   const onExit = () => {
     const videoElement = document.querySelector('iframe') as HTMLIFrameElement;
-    const closeButtonElement = document.querySelector(
+    const closeElement = document.querySelector(
       '#close-video-icon'
     ) as SVGElement;
     const bodyElement = document.querySelector('body') as HTMLBodyElement;
 
     videoElement.removeAttribute('style');
-    closeButtonElement.style.display = 'none';
+    closeElement.style.display = 'none';
     window.scrollTo(0, document.body.scrollHeight);
     bodyElement.style.overflow = 'auto';
+
+    // This is to force a rerender so on all devices the video stops playing
+    setReRender(reRender + 1);
   };
 
   return (
@@ -66,16 +70,9 @@ export const Video = ({ videoData }: VideoProps) => {
       </div>
       <AiOutlineCloseCircle
         id="close-video-icon"
-        style={{
-          position: 'absolute',
-          top: '25px',
-          right: '25px',
-          zIndex: '99999999',
-          color: 'white',
-          display: 'none',
-        }}
         onClick={onExit}
         size={100}
+        className={styles.closeIcon}
       />
     </DraggableTile>
   );
