@@ -33,5 +33,11 @@ export const Address = () => {
     );
   }
 
-  return <div data-testid="address-not-found" className={styles.notFound} />;
+  return (
+    <div className={styles.location}>
+      <div data-testid="address-not-found">
+        <span className={styles.address}>&nbsp;</span>
+      </div>
+    </div>
+  );
 };
