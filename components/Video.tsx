@@ -18,6 +18,7 @@ export const Video = ({ videoData }: VideoProps) => {
     const closeButtonElement = document.querySelector(
       '#close-video-icon'
     ) as SVGElement;
+    const bodyElement = document.querySelector('body') as HTMLBodyElement;
 
     videoElement.style.position = 'absolute';
     videoElement.style.top = '0px';
@@ -29,18 +30,26 @@ export const Video = ({ videoData }: VideoProps) => {
     videoElement.style.padding = '0';
     videoElement.style.overflow = 'hidden';
     videoElement.style.zIndex = '100';
+    videoElement.style.overflow = 'hidden';
 
     closeButtonElement.style.display = 'inline';
+
+    bodyElement.style.overflow = 'hidden';
+
+    window.scrollTo({ top: 0 });
   };
 
-  const onPause = () => {
+  const onExit = () => {
     const videoElement = document.querySelector('iframe') as HTMLIFrameElement;
     const closeButtonElement = document.querySelector(
       '#close-video-icon'
     ) as SVGElement;
+    const bodyElement = document.querySelector('body') as HTMLBodyElement;
 
     videoElement.removeAttribute('style');
     closeButtonElement.style.display = 'none';
+    window.scrollTo(0, document.body.scrollHeight);
+    bodyElement.style.overflow = 'auto';
   };
 
   return (
@@ -51,7 +60,6 @@ export const Video = ({ videoData }: VideoProps) => {
           url={`https://www.youtube.com/watch?v=${videoData.items[0].snippet.resourceId.videoId}`}
           controls={true}
           onPlay={onPlay}
-          onPause={onPause}
           width="100%"
           height="100%"
         />
@@ -66,7 +74,7 @@ export const Video = ({ videoData }: VideoProps) => {
           color: 'white',
           display: 'none',
         }}
-        onClick={onPause}
+        onClick={onExit}
         size={100}
       />
     </DraggableTile>
