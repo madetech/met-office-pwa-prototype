@@ -10,7 +10,7 @@ export const Address = () => {
     const getAddress = async () => {
       if (currentAddress === null) {
         if ('geolocation' in navigator) {
-          navigator.geolocation.watchPosition(async function (position) {
+          navigator.geolocation.getCurrentPosition(async function (position) {
             const address = await axios.get<string>(
               `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
             );
