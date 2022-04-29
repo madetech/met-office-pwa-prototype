@@ -17,28 +17,29 @@
 }
 
 .search input {
+  border: 1px solid #888;
   border-radius: 0;
   padding: 8px;
-  /* padding: 14px; */
 }
 
 .search input[type='text'] {
-  flex-basis: 80%;
+  flex-basis: 75%;
   max-width: 400px;
   padding-left: 15px;
 }
 
+.search input[type='text']:focus {
+  outline: 1px solid #555;
+}
+
 .search input[type='submit'] {
-  flex-basis: 19%;
+  background-color: #e5e5e5;
+  flex-basis: 25%;
   max-width: 100px;
 }
 
 @media screen and (min-width: 429px) {
   .inputs {
     justify-content: flex-start;
-  }
-
-  .search input[type='text'] {
-    margin-right: 4px;
   }
 }
