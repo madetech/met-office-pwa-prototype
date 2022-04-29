@@ -9,6 +9,7 @@ import { DraggableTile } from './DraggableTile';
 import { Timeslot } from './Timeslot';
 import { Dayslot } from './Dayslot';
 import styles from '../styles/Forecast.module.css';
+import { Timestamp } from './Timestamp';
 
 const degreesSymbol = String.fromCharCode(176);
 
@@ -32,6 +33,7 @@ export const Forecast = ({ data }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
   const [forecastDailyData, setForecastDailyData] = useState<DailyData>();
   const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
+  const [fetchingData, setFetchingData] = useState(false);
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
@@ -39,6 +41,7 @@ export const Forecast = ({ data }: ForecastProps) => {
   const lastUpdatedTime = new Date(
     forecastData.lastUpdated
   ).toLocaleTimeString();
+
   const currentTimeMinusOneHour = new Date(Date.now());
   currentTimeMinusOneHour.setMinutes(1);
   currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
@@ -47,7 +50,7 @@ export const Forecast = ({ data }: ForecastProps) => {
     const res = await axios.get<HourlyData>(
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
-
+    setFetchingData(true);
     setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
     setIsHourlyData(true);
   };
@@ -132,8 +135,11 @@ export const Forecast = ({ data }: ForecastProps) => {
           })}
         </section>
       )}
-
-      <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p>
+      <Timestamp
+        lastUpdatedTime={lastUpdatedTime}
+        fetchingData={fetchingData}
+        setFetchingData={setFetchingData}
+      />
     </DraggableTile>
   );
 };

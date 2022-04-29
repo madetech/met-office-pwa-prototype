@@ -1,0 +1,28 @@
+@keyframes fadeout {
+  from {
+    background-color: var(--met-office-beige-300);
+  }
+  to {
+    background-color: inherit;
+  }
+}
+
+.timestamp {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.lastUpdated {
+  font-size: smaller;
+  text-align: right;
+  padding: 0.3rem;
+  margin-right: -0.3rem;
+}
+
+.refreshed {
+  animation-name: fadeout;
+  animation-duration: 1s;
+}
