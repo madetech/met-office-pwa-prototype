@@ -8,25 +8,12 @@ import { DraggableTile } from '../DraggableTile';
 import { Forecast } from '../Forecast';
 import styles from '../../styles/Location.module.css';
 
-export const localForecast = ({ latitude: string }) => {
-  let latitude = '';
-
-  if (typeof window !== 'undefined') {
-    latitude =
-      localStorage.getItem('latitude') === null
-        ? ''
-        : localStorage.getItem('latitude');
-  }
-
-  return latitude;
-};
-
 export const Location = () => {
   const [data, setData] = useState<HourlyDataLastUpdated | null>(null);
 
   useEffect(() => {
     const getAddress = async () => {
-      if (localForecast.latitude === null) {
+      if (data === null) {
         if ('geolocation' in navigator) {
           navigator.geolocation.getCurrentPosition(async function (position) {
             const currentForecast = await axios.get<HourlyData>(
