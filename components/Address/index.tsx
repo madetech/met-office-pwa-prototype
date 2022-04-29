@@ -2,29 +2,36 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ImCompass } from 'react-icons/im';
 import styles from '../../styles/Location.module.css';
+import useStorage from '../../useLocalStorage';
 
 export const Address = () => {
-  const [currentAddress, setCurrentAddress] = useState<string | null>(null);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const { getItem, setItem } = useStorage();
+  const keyName = 'local-address';
+
+  const currentAddress = getItem(keyName);
 
   useEffect(() => {
+    setIsLoaded(true);
+
     const getAddress = async () => {
-      if (currentAddress === null) {
+      if (currentAddress === undefined) {
         if ('geolocation' in navigator) {
           navigator.geolocation.getCurrentPosition(async function (position) {
             const address = await axios.get<string>(
               `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
             );
 
-            setCurrentAddress(address.data);
+            setItem(keyName, address.data);
           });
         }
       }
     };
 
     getAddress();
-  }, [currentAddress]);
+  }, [currentAddress, setItem]);
 
-  if (currentAddress !== null) {
+  if (isLoaded) {
     return (
       <div className={styles.location}>
         <ImCompass />
