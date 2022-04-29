@@ -4,6 +4,7 @@ import {
   HourlyData,
   HourlyDataLastUpdated,
 } from '../../interfaces/api-data-hourly';
+import { DraggableTile } from '../DraggableTile';
 import { Forecast } from '../Forecast';
 import styles from '../../styles/Location.module.css';
 
@@ -35,5 +36,9 @@ export const Location = () => {
     return <Forecast data={data} />;
   }
 
-  return <div data-testid="address-not-found" className={styles.notFound} />;
+  return (
+    <DraggableTile>
+      <div data-testid="address-not-found" className={styles.notFound} />
+    </DraggableTile>
+  );
 };
