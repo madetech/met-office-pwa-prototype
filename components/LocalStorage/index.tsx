@@ -6,6 +6,8 @@ type UseStorageReturnValue = {
   removeItem: (key: string, type?: StorageType) => void;
 };
 
+export const KEY_LOCAL_ADDRESS = 'local-address';
+
 const useStorage = (): UseStorageReturnValue => {
   const storageType = (type?: StorageType): 'localStorage' | 'sessionStorage' =>
     `${type ?? 'session'}Storage`;

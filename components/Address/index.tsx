@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ImCompass } from 'react-icons/im';
 import styles from '../../styles/Location.module.css';
-import useStorage from '../LocalStorage';
+import useStorage, { KEY_LOCAL_ADDRESS } from '../LocalStorage';
 
 export const Address = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const { getItem, setItem } = useStorage();
-  const keyName = 'local-address';
 
-  const currentAddress = getItem(keyName);
+  const currentAddress = getItem(KEY_LOCAL_ADDRESS);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -22,7 +21,7 @@ export const Address = () => {
               `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
             );
 
-            setItem(keyName, address.data);
+            setItem(KEY_LOCAL_ADDRESS, address.data);
           });
         }
       }
