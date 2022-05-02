@@ -30,8 +30,6 @@ describe('Local storage', () => {
 
     useStorage().removeItem(keyName);
 
-    console.log(result);
-
     expect(result).not.toBeNull();
     expect(result.features[0].properties.timeSeries.length).toBe(2);
     expect(result.features[0].properties.timeSeries[0].time).toBe(

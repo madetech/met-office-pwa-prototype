@@ -7,6 +7,7 @@ type UseStorageReturnValue = {
 };
 
 export const KEY_LOCAL_ADDRESS = 'local-address';
+export const KEY_LOCAL_FORECAST = 'local-forecast';
 
 const useStorage = (): UseStorageReturnValue => {
   const storageType = (type?: StorageType): 'localStorage' | 'sessionStorage' =>
