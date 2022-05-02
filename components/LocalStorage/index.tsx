@@ -1,7 +1,13 @@
+import { HourlyDataLastUpdated } from '../../interfaces/api-data-hourly';
+
 type StorageType = 'session' | 'local';
 
 type UseStorageReturnValue = {
   getItem: (key: string, type?: StorageType) => string;
+  getItemAsHourlyDataLastUpdated: (
+    key: string,
+    type?: StorageType
+  ) => HourlyDataLastUpdated | null;
   setItem: (key: string, value: string, type?: StorageType) => void;
   removeItem: (key: string, type?: StorageType) => void;
 };
@@ -19,6 +25,20 @@ const useStorage = (): UseStorageReturnValue => {
     return isBrowser ? window[storageType(type)][key] : '';
   };
 
+  const getItemAsHourlyDataLastUpdated = (
+    key: string,
+    type?: StorageType
+  ): HourlyDataLastUpdated | null => {
+    const data = getItem(key, type);
+
+    if (data) {
+      console.log('Local storage data: ', data);
+      return JSON.parse(data);
+    }
+
+    return null;
+  };
+
   const setItem = (key: string, value: string, type?: StorageType): void => {
     if (isBrowser) {
       window[storageType(type)].setItem(key, value);
@@ -31,6 +51,7 @@ const useStorage = (): UseStorageReturnValue => {
 
   return {
     getItem,
+    getItemAsHourlyDataLastUpdated,
     setItem,
     removeItem,
   };
