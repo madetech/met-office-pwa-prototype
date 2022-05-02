@@ -16,7 +16,8 @@ export const Location = () => {
 
     const getLocalForecast = async () => {
       if (data === null) {
-        const localForecast = getItemAsHourlyDataLastUpdated('wrong-key');
+        const localForecast =
+          getItemAsHourlyDataLastUpdated(KEY_LOCAL_FORECAST);
         if (localForecast === null) {
           if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(async function (position) {
