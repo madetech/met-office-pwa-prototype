@@ -32,7 +32,6 @@ const useStorage = (): UseStorageReturnValue => {
     const data = getItem(key, type);
 
     if (data) {
-      console.log('Local storage data: ', data);
       return JSON.parse(data);
     }
 
