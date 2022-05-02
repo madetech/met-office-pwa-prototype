@@ -6,4 +6,17 @@ describe('Local storage', () => {
 
     expect(result).toBe(undefined);
   });
+
+  it('should return value if key is known', () => {
+    const keyName = 'known-key';
+    const keyValue = 'this is the test value';
+
+    useStorage().setItem(keyName, keyValue);
+
+    const result = useStorage().getItem(keyName);
+
+    useStorage().removeItem(keyName);
+
+    expect(result).toBe(keyValue);
+  });
 });
