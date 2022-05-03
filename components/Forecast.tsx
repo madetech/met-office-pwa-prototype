@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   HourlyData,
   HourlyDataLastUpdated,
@@ -36,6 +36,15 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
   const [forecastDailyData, setForecastDailyData] = useState<DailyData>();
   const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
   const [fetchingData, setFetchingData] = useState(false);
+
+  useEffect(() => {
+    if (fetchingData) {
+      setTimeout(() => {
+        setFetchingData(false);
+      }, 1000);
+    }
+  }, [fetchingData]);
+
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
@@ -143,7 +152,6 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
       <Timestamp
         lastUpdatedTime={lastUpdatedTime}
         fetchingData={fetchingData}
-        setFetchingData={setFetchingData}
       />
     </DraggableTile>
   );
