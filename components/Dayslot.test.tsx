@@ -5,6 +5,7 @@ import { DailyForecast } from '../interfaces/api-data-daily';
 describe('dayslot', () => {
   const forecast: DailyForecast = {
     time: '2022-04-26T00:00Z',
+    daySignificantWeatherCode: 5,
     nightSignificantWeatherCode: 7,
     dayMaxScreenTemperature: 13.69,
     nightMinScreenTemperature: 4.81,
@@ -13,7 +14,7 @@ describe('dayslot', () => {
   it('should display forecast date', () => {
     render(<Dayslot forecast={forecast} />);
 
-    const formattedDate = screen.getByText('Tue Apr 26');
+    const formattedDate = screen.getByText('Tue');
 
     expect(formattedDate).toBeInTheDocument();
   });
