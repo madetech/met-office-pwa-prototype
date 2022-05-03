@@ -4,7 +4,7 @@ import {
   HourlyData,
   HourlyDataLastUpdated,
 } from '../interfaces/api-data-hourly';
-import { DailyData, DailyForecast } from '../interfaces/api-data-daily';
+import { DailyData, DailyDataLastUpdated } from '../interfaces/api-data-daily';
 import { DraggableTile } from './DraggableTile';
 import { Timeslot } from './Timeslot';
 import { Dayslot } from './Dayslot';
@@ -26,6 +26,13 @@ const formatLongitude = (longitude: number) => {
     : `${(longitude * -1).toFixed(2)}${degreesSymbol}W`;
 };
 
+const currentTimeMinusOneHour = () => {
+  const currentTimeMinusOneHour = new Date(Date.now());
+  currentTimeMinusOneHour.setMinutes(1);
+  currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
+  return currentTimeMinusOneHour;
+};
+
 interface ForecastProps {
   data: HourlyDataLastUpdated;
   isUserLocation: boolean;
@@ -33,7 +40,8 @@ interface ForecastProps {
 
 export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
-  const [forecastDailyData, setForecastDailyData] = useState<DailyData>();
+  const [forecastDailyData, setForecastDailyData] =
+    useState<DailyDataLastUpdated>();
   const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
   const [fetchingData, setFetchingData] = useState(false);
 
@@ -49,24 +57,31 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
   const placeName = forecastData.features[0].properties.location.name;
-  const lastUpdatedTime = new Date(
-    forecastData.lastUpdated
-  ).toLocaleTimeString();
-
-  const currentTimeMinusOneHour = new Date(Date.now());
-  currentTimeMinusOneHour.setMinutes(1);
-  currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
+  const lastUpdatedTime = isHourlyData
+    ? new Date(forecastData.lastUpdated).toLocaleTimeString()
+    : new Date(forecastDailyData?.lastUpdated || '').toLocaleTimeString();
 
   const handleRefresh = async () => {
-    const res = await axios.get<HourlyData>(
-      `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
-    );
+    if (isHourlyData) {
+      const res = await axios.get<HourlyData>(
+        `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
+      );
+      setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
+    } else {
+      const res = await axios.get<DailyData>(
+        `/api/get-weather-forecast?frequency=daily&latitude=${coords[1]}&longitude=${coords[0]}`
+      );
+      setForecastDailyData({
+        ...res.data,
+        lastUpdated: new Date().toISOString(),
+      });
+    }
+
     setFetchingData(true);
-    setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
-    setIsHourlyData(true);
   };
 
   const handleHourlyClick = async () => {
+    if (isHourlyData) return;
     const res = await axios.get<HourlyData>(
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
@@ -76,29 +91,31 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
   };
 
   const handleDailyClick = async () => {
+    if (!isHourlyData) return;
     const res = await axios.get<DailyData>(
       `/api/get-weather-forecast?frequency=daily&latitude=${coords[1]}&longitude=${coords[0]}`
     );
 
-    setForecastDailyData(res.data);
+    setForecastDailyData({
+      ...res.data,
+      lastUpdated: new Date().toISOString(),
+    });
 
     setIsHourlyData(false);
   };
 
   const forecasts = forecastData.features[0].properties.timeSeries
     .filter((forecast) => {
-      if (Number(new Date(forecast.time)) < Number(currentTimeMinusOneHour)) {
+      if (Number(new Date(forecast.time)) < Number(currentTimeMinusOneHour())) {
         return false;
       }
       return true;
     })
     .slice(0, 15);
 
-  let dailyForecasts: DailyForecast[] = [];
-  if (forecastDailyData !== undefined) {
-    dailyForecasts =
-      forecastDailyData.features[0].properties.timeSeries.slice(1);
-  }
+  const dailyForecasts = forecastDailyData
+    ? forecastDailyData.features[0].properties.timeSeries.slice(1)
+    : [];
 
   return (
     <DraggableTile>
