@@ -3,41 +3,48 @@ import axios from 'axios';
 import { HourlyDataLastUpdated } from '../../interfaces/api-data-hourly';
 import { DraggableTile } from '../DraggableTile';
 import { Forecast } from '../Forecast';
-import useStorage, { KEY_LOCAL_FORECAST } from '../LocalStorage';
 import styles from '../../styles/Location.module.css';
+import Cookies from 'universal-cookie';
+import { LOCATION_COOKIE_LAT, LOCATION_COOKIE_LON } from '../../constants';
 
-export const Location = () => {
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [data, setData] = useState<HourlyDataLastUpdated | null>(null);
-  const { getItemAsHourlyDataLastUpdated, setItem } = useStorage();
+interface LocationProps {
+  lastKnownLocationData?: HourlyDataLastUpdated;
+}
+
+export const Location = ({ lastKnownLocationData }: LocationProps) => {
+  const [data, setData] = useState<HourlyDataLastUpdated | undefined>(
+    lastKnownLocationData
+  );
 
   useEffect(() => {
-    setIsLoaded(true);
-
     const getLocalForecast = async () => {
-      if (data === null) {
-        const localForecast =
-          getItemAsHourlyDataLastUpdated(KEY_LOCAL_FORECAST);
-        if (localForecast === null) {
-          if ('geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition(async function (position) {
-              const currentForecast = await axios.get<HourlyDataLastUpdated>(
-                `/api/get-weather-forecast?frequency=hourly&latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
-              );
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(async function (position) {
+          const currentForecast = await axios.get<HourlyDataLastUpdated>(
+            `/api/get-weather-forecast?frequency=hourly&latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
+          );
 
-              setData(currentForecast.data);
-              setItem(KEY_LOCAL_FORECAST, JSON.stringify(currentForecast.data));
-            });
-          }
-        } else {
-          setData(localForecast);
-        }
+          setData(currentForecast.data);
+          const cookies = new Cookies();
+
+          cookies.set(LOCATION_COOKIE_LAT, position.coords.latitude, {
+            path: '/',
+            sameSite: 'strict',
+            secure: true,
+          });
+
+          cookies.set(LOCATION_COOKIE_LON, position.coords.longitude, {
+            path: '/',
+            sameSite: 'strict',
+            secure: true,
+          });
+        });
       }
     };
     getLocalForecast();
-  }, [getItemAsHourlyDataLastUpdated, data, setItem]);
+  }, []);
 
-  if (isLoaded && data) {
+  if (data) {
     return <Forecast data={data} />;
   }
 

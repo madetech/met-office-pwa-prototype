@@ -11,12 +11,18 @@ import { Video } from './Video';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 
 interface IndexProps {
+  lastKnownLocationData?: HourlyDataLastUpdated;
   data: HourlyDataLastUpdated;
   hasReadPermission: boolean;
   videoData: YoutubePlaylistApiResponse;
 }
 
-export const Index = ({ hasReadPermission, data, videoData }: IndexProps) => {
+export const Index = ({
+  hasReadPermission,
+  data,
+  lastKnownLocationData,
+  videoData,
+}: IndexProps) => {
   const router = useRouter();
   if (!hasReadPermission) {
     return <Login redirectPath={router.asPath} />;
@@ -27,8 +33,7 @@ export const Index = ({ hasReadPermission, data, videoData }: IndexProps) => {
       <Navigation />
       <main className={styles.contentContainer}>
         <Search />
-        <Address />
-        <Location />
+        <Location lastKnownLocationData={lastKnownLocationData} />
         <Forecast data={data} />
         <Video videoData={videoData} />
       </main>
