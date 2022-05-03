@@ -37,4 +37,8 @@ a {
   body {
     font-size: 140%;
   }
+
+  .tile {
+    padding: 1rem 2.5rem;
+  }
 }

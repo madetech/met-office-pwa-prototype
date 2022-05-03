@@ -15,7 +15,7 @@
 }
 
 .timeslots {
-  height: 160px;
+  height: 10rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

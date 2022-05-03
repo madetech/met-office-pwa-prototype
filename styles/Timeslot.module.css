@@ -8,11 +8,11 @@
 }
 
 .timeslot p {
-  padding: 0.3rem 0;
+  padding: 0.75rem 0;
   text-align: center;
   margin: 0;
   flex-basis: 25%;
-  height: 40px;
+  height: 2.5rem;
 }
 
 .timeslot img {
@@ -28,6 +28,11 @@
 
 @media screen and (min-width: 429px) {
   .timeslot {
-    min-width: 110px;
+    min-width: 100px;
+    padding-right: 1.3rem;
+  }
+
+  .timeslot p {
+    padding: 0.5rem 0;
   }
 }
