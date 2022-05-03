@@ -24,6 +24,10 @@ a {
   border-radius: 10px;
 }
 
+.tile h2 {
+  font-size: 1rem;
+}
+
 :root {
   --met-office-blue-700: #1b4462;
   --met-office-blue-650: #294b60;

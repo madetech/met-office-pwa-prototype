@@ -8,30 +8,13 @@ export const Navigation = () => {
         <div>
           <Image
             src={`/assets/met-office-logo-white.svg`}
-            width={144}
-            height={72}
+            width={116}
+            height={58}
             alt="Met office logo"
           />
         </div>
         <div className={styles.iconsContainer}>
-          <div className={styles.iconContainer}>
-            <Image
-              src={`/assets/filter-icon.svg`}
-              alt="Filter"
-              width={24}
-              height={24}
-              className={styles.icon}
-            />
-          </div>
-          <div className={styles.iconContainer}>
-            <Image
-              src={`/assets/settings-icon.svg`}
-              alt="Settings"
-              width={24}
-              height={24}
-              className={styles.icon}
-            />
-          </div>
+          <button className={styles.menuButton}>Menu</button>
         </div>
       </div>
     </nav>
