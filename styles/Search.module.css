@@ -17,19 +17,25 @@
 }
 
 .search input {
+  border: 1px solid #888;
   border-radius: 0;
   padding: 8px;
-  /* padding: 14px; */
 }
 
 .search input[type='text'] {
-  flex-basis: 80%;
+  flex-basis: 75%;
   max-width: 400px;
   padding-left: 15px;
 }
 
+.search input[type='text']:focus {
+  outline: 1px solid #555;
+}
+
 .search input[type='submit'] {
-  flex-basis: 19%;
+  background-color: #0078a5;
+  color: white;
+  flex-basis: 25%;
   max-width: 100px;
 }
 
@@ -38,7 +44,9 @@
     justify-content: flex-start;
   }
 
-  .search input[type='text'] {
-    margin-right: 4px;
+  .search input[type='submit'] {
+    font-size: inherit;
+    padding: 1rem 1.5rem;
+    max-width: inherit;
   }
 }

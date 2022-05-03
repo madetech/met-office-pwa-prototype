@@ -1,15 +1,21 @@
 .dayslot {
-  padding: 0 1rem;
-  border-right: 1px solid #294b60;
-  text-align: center;
+  padding-right: 1rem;
+  min-width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .dayslot p {
-  padding: 0.3rem 0 0.3rem 0.3rem;
+  padding: 0.3rem 0;
+  text-align: center;
   margin: 0;
-  line-height: 16px;
+  flex-basis: 25%;
+  height: 40px;
 }
 
-.maxTemp {
-  font-size: x-large;
+.dayslot img {
+  width: 40px;
+  flex-basis: 25%;
 }

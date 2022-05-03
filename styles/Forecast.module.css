@@ -15,10 +15,12 @@
 }
 
 .timeslots {
+  height: 10rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 
@@ -31,51 +33,29 @@
   text-decoration: underline;
 }
 
-.lastUpdated {
-  font-size: smaller;
-  text-align: right;
-}
-
 .btnWrapper {
-  width: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .btn {
   padding: 0.6em;
-  font-size: 1.1em;
   border: 0;
   cursor: pointer;
-  width: 100px;
-}
-
-.btnLeft {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-
-.btnRight {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  flex-basis: 40%;
 }
 
 .btnActive {
   color: #fff;
-  background-color: #1b4462;
+  background-color: #0078a5;
+  font-weight: bold;
 }
 
-@media screen and (max-width: 425px) {
-  .btn {
-    padding: 0.2em;
-  }
-
-  .btnLeft {
-    border-radius: 8px;
-    border-radius: 8px;
-    margin-bottom: 3px;
-  }
-
-  .btnRight {
-    border-radius: 8px;
-    border-radius: 8px;
+@media screen and (min-width: 429px) {
+  .btn,
+  .refresh {
+    font-size: inherit;
   }
 }

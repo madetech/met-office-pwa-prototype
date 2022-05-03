@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   HourlyData,
   HourlyDataLastUpdated,
@@ -9,6 +9,7 @@ import { DraggableTile } from './DraggableTile';
 import { Timeslot } from './Timeslot';
 import { Dayslot } from './Dayslot';
 import styles from '../styles/Forecast.module.css';
+import { Timestamp } from './Timestamp';
 import { ImCompass } from 'react-icons/im';
 
 const degreesSymbol = String.fromCharCode(176);
@@ -34,6 +35,16 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
   const [forecastDailyData, setForecastDailyData] = useState<DailyData>();
   const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
+  const [fetchingData, setFetchingData] = useState(false);
+
+  useEffect(() => {
+    if (fetchingData) {
+      setTimeout(() => {
+        setFetchingData(false);
+      }, 1000);
+    }
+  }, [fetchingData]);
+
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
   const lat = formatLatitude(coords[1]);
@@ -41,6 +52,7 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
   const lastUpdatedTime = new Date(
     forecastData.lastUpdated
   ).toLocaleTimeString();
+
   const currentTimeMinusOneHour = new Date(Date.now());
   currentTimeMinusOneHour.setMinutes(1);
   currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
@@ -49,7 +61,7 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
     const res = await axios.get<HourlyData>(
       `/api/get-weather-forecast?frequency=hourly&latitude=${coords[1]}&longitude=${coords[0]}`
     );
-
+    setFetchingData(true);
     setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
     setIsHourlyData(true);
   };
@@ -99,29 +111,30 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
             Lat: {lat} / Long: {long}
           </span>
         </article>
-        <div className={styles.btnWrapper}>
-          <button
-            className={`${styles.btn} ${styles.btnLeft} ${
-              isHourlyData ? styles.btnActive : ''
-            }`}
-            onClick={handleHourlyClick}
-          >
-            Hourly
-          </button>
-          <button
-            className={`${styles.btn} ${styles.btnRight} ${
-              isHourlyData ? '' : styles.btnActive
-            }`}
-            onClick={handleDailyClick}
-          >
-            Daily
-          </button>
-        </div>
 
         <button className={styles.refresh} onClick={handleRefresh}>
           Refresh
         </button>
       </section>
+
+      <div className={styles.btnWrapper}>
+        <button
+          className={`${styles.btn} ${styles.btnLeft} ${
+            isHourlyData ? styles.btnActive : ''
+          }`}
+          onClick={handleHourlyClick}
+        >
+          Hourly
+        </button>
+        <button
+          className={`${styles.btn} ${styles.btnRight} ${
+            isHourlyData ? '' : styles.btnActive
+          }`}
+          onClick={handleDailyClick}
+        >
+          Daily
+        </button>
+      </div>
 
       {isHourlyData ? (
         <section className={styles.timeslots}>
@@ -136,8 +149,10 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
           })}
         </section>
       )}
-
-      <p className={styles.lastUpdated}>Last updated: {lastUpdatedTime}</p>
+      <Timestamp
+        lastUpdatedTime={lastUpdatedTime}
+        fetchingData={fetchingData}
+      />
     </DraggableTile>
   );
 };

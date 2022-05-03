@@ -21,6 +21,7 @@ Default.args = {
     dayMaxScreenTemperature: 20,
     nightMinScreenTemperature: 8,
     nightSignificantWeatherCode: 2,
+    daySignificantWeatherCode: 5,
     time: '2022-05-02T18:25:42.518Z',
   },
 };
