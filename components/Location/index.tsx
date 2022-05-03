@@ -1,55 +1,58 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { ImCompass } from 'react-icons/im';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {
-  HourlyData,
-  HourlyDataLastUpdated,
-} from '../../interfaces/api-data-hourly';
+import { HourlyDataLastUpdated } from '../../interfaces/api-data-hourly';
+import { DraggableTile } from '../DraggableTile';
 import { Forecast } from '../Forecast';
 import styles from '../../styles/Location.module.css';
+import Cookies from 'universal-cookie';
+import { LOCATION_COOKIE_LAT, LOCATION_COOKIE_LON } from '../../constants';
 
-export const Location = () => {
-  const [currentAddress, setCurrentAddress] = useState<string>('');
-  const [data, setData] = useState<HourlyDataLastUpdated | null>(null);
+interface LocationProps {
+  lastKnownLocationData?: HourlyDataLastUpdated;
+}
+
+export const Location = ({ lastKnownLocationData }: LocationProps) => {
+  const [data, setData] = useState<HourlyDataLastUpdated | undefined>(
+    lastKnownLocationData
+  );
 
   useEffect(() => {
-    const getAddress = async () => {
-      if (data === null) {
-        if ('geolocation' in navigator) {
-          navigator.geolocation.watchPosition(async function (position) {
-            const address = await axios.get<string>(
-              `/api/get-address?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
-            );
+    const getLocalForecast = async () => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(async function (position) {
+          const currentForecast = await axios.get<HourlyDataLastUpdated>(
+            `/api/get-weather-forecast?frequency=hourly&latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
+          );
 
-            const currentForecast = await axios.get<HourlyData>(
-              `/api/get-weather-forecast?frequency=hourly&latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`
-            );
+          setData(currentForecast.data);
+          const cookies = new Cookies();
 
-            setCurrentAddress(address.data);
-
-            setData({
-              ...currentForecast.data,
-              lastUpdated: new Date().toISOString(),
-            });
+          cookies.set(LOCATION_COOKIE_LAT, position.coords.latitude, {
+            path: '/',
+            sameSite: 'strict',
+            secure: true,
           });
-        }
+
+          cookies.set(LOCATION_COOKIE_LON, position.coords.longitude, {
+            path: '/',
+            sameSite: 'strict',
+            secure: true,
+          });
+        });
       }
     };
-
-    getAddress();
-  }, [data]);
+    getLocalForecast();
+  }, []);
 
   if (data) {
-    return (
-      <>
-        <div className={styles.location}>
-          <ImCompass />
-          <span className={styles.address}>{currentAddress}</span>
-        </div>
-        <Forecast data={data} />
-      </>
-    );
+    return <Forecast data={data} isUserLocation={true} />;
   }
 
-  return <div data-testid="address-not-found" className={styles.notFound} />;
+  return (
+    <DraggableTile>
+      <div data-testid="address-not-found" className={styles.notFound}>
+        Local forecast NOT found
+      </div>
+    </DraggableTile>
+  );
 };

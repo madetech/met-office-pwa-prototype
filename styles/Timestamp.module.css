@@ -1,6 +1,6 @@
 @keyframes fadeout {
   from {
-    background-color: var(--met-office-beige-300);
+    background-color: #c6bfae;
   }
   to {
     background-color: inherit;

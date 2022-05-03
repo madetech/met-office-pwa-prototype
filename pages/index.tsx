@@ -3,21 +3,23 @@ import { HourlyDataLastUpdated } from '../interfaces/api-data-hourly';
 import { Index } from '../components';
 import { getLatestVideoData } from '../requests/getLatestVideoData';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
-
 interface HomeProps {
   hasReadPermission: boolean;
+  lastKnownLocationData?: HourlyDataLastUpdated;
   data: HourlyDataLastUpdated;
   videoData: YoutubePlaylistApiResponse;
 }
 
 export default function Home({
   hasReadPermission,
+  lastKnownLocationData,
   data,
   videoData,
 }: HomeProps) {
   return (
     <Index
       hasReadPermission={hasReadPermission}
+      lastKnownLocationData={lastKnownLocationData}
       data={data}
       videoData={videoData}
     />
@@ -30,6 +32,7 @@ export const getServerSideProps = async () => {
   const cambridge = [52.2075, 0.124];
   const { data } = await getForecastData('hourly', cambridge[0], cambridge[1]);
   const { data: videoData } = await getLatestVideoData();
+
   if (!data) return { notFound: true };
   return {
     props: {

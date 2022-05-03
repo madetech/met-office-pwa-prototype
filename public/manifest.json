@@ -1,16 +1,16 @@
 {
-    "name": "Met Office Demo",
-    "short_name": "Met Office",
-    "icons": [
-      {
-        "src": "/met-office-logo.png",
-        "sizes": "180x180",
-        "type": "image/png"
-      }
-    ],
-    "theme_color": "#FFFFFF",
-    "background_color": "#FFFFFF",
-    "start_url": "/",
-    "display": "standalone",
-    "orientation": "portrait"
-  }
+  "name": "Met Office Demo",
+  "short_name": "Met Office",
+  "icons": [
+    {
+      "src": "/assets/met-office-logo.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -6,7 +6,7 @@
   font-weight: normal;
   display: block;
   font-size: smaller;
-  color: #888;
+  color: #585858;
   margin-bottom: 0.5rem;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .search input[type='submit'] {
-  background-color: var(--primary-button);
+  background-color: #0078a5;
   color: white;
   flex-basis: 25%;
   max-width: 100px;
