@@ -33,7 +33,7 @@ export const Index = ({
       <main className={styles.contentContainer}>
         <Search />
         <Location lastKnownLocationData={lastKnownLocationData} />
-        <Forecast data={data} />
+        <Forecast data={data} isUserLocation={false} />
         <Video videoData={videoData} />
       </main>
     </div>
