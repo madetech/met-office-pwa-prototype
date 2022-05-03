@@ -45,7 +45,7 @@ export const Location = ({ lastKnownLocationData }: LocationProps) => {
   }, []);
 
   if (data) {
-    return <Forecast data={data} />;
+    return <Forecast data={data} isUserLocation={true} />;
   }
 
   return (

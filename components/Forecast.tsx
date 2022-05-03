@@ -9,6 +9,7 @@ import { DraggableTile } from './DraggableTile';
 import { Timeslot } from './Timeslot';
 import { Dayslot } from './Dayslot';
 import styles from '../styles/Forecast.module.css';
+import { ImCompass } from 'react-icons/im';
 
 const degreesSymbol = String.fromCharCode(176);
 
@@ -26,9 +27,10 @@ const formatLongitude = (longitude: number) => {
 
 interface ForecastProps {
   data: HourlyDataLastUpdated;
+  isUserLocation: boolean;
 }
 
-export const Forecast = ({ data }: ForecastProps) => {
+export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
   const [forecastData, setForecastData] = useState(data);
   const [forecastDailyData, setForecastDailyData] = useState<DailyData>();
   const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
@@ -90,7 +92,9 @@ export const Forecast = ({ data }: ForecastProps) => {
     <DraggableTile>
       <section className={styles.heading}>
         <article className={styles.locationData}>
-          <h2 className={styles.locationName}>{placeName}</h2>
+          <h2 className={styles.locationName}>
+            {isUserLocation && <ImCompass />} {placeName}
+          </h2>
           <span className={styles.locationPosition}>
             Lat: {lat} / Long: {long}
           </span>
