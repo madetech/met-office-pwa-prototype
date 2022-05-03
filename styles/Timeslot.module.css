@@ -1,5 +1,6 @@
 .timeslot {
-  margin-right: 1rem;
+  padding-right: 1rem;
+  min-width: 65px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -11,9 +12,22 @@
   text-align: center;
   margin: 0;
   flex-basis: 25%;
+  height: 40px;
 }
 
 .timeslot img {
   width: 40px;
   flex-basis: 25%;
+}
+
+@media screen and (min-width: 391px) {
+  .timeslot {
+    min-width: 70px;
+  }
+}
+
+@media screen and (min-width: 429px) {
+  .timeslot {
+    min-width: 110px;
+  }
 }

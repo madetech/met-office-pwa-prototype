@@ -29,4 +29,12 @@ a {
   --met-office-blue-650: #294b60;
 
   --met-office-beige-300: #c6bfae;
+
+  --primary-button: #0078a5; /* Colour grabbed from Dawn's wireframe */
+}
+
+@media screen and (min-width: 800px) {
+  body {
+    font-size: 140%;
+  }
 }

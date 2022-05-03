@@ -1,6 +1,7 @@
 export interface DailyForecast {
   time: string;
   nightSignificantWeatherCode: number;
+  daySignificantWeatherCode: number;
   dayMaxScreenTemperature: number;
   nightMinScreenTemperature: number;
 }
