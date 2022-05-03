@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HourlyData } from '../../interfaces/api-data-hourly';
+import { HourlyDataLastUpdated } from '../../interfaces/api-data-hourly';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -9,7 +9,7 @@ export default async function handler(
   const urlString = `${process.env.MET_OFFICE_API_BASE_URL}${req.query.frequency}`;
 
   const response = await axios
-    .get<HourlyData>(urlString, {
+    .get<HourlyDataLastUpdated>(urlString, {
       headers: {
         'X-IBM-Client-Id': `${process.env.MET_OFFICE_API_CLIENT_ID}`,
         'X-IBM-Client-Secret': `${process.env.MET_OFFICE_API_CLIENT_SECRET}`,
@@ -23,6 +23,7 @@ export default async function handler(
       },
     })
     .then(function (res) {
+      res.data.lastUpdated = new Date().toISOString();
       return res.data;
     })
     .catch(function (error) {
