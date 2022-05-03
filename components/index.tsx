@@ -3,7 +3,6 @@ import { Navigation } from './Navigation';
 import { useRouter } from 'next/router';
 import { Login } from './login';
 import { Search } from './Search';
-import { Address } from './Address';
 import { Forecast } from './Forecast';
 import { Location } from './Location';
 import styles from '../styles/Index.module.css';
