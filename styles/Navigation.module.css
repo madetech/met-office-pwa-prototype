@@ -31,4 +31,5 @@
   border: 2px solid white;
   border-radius: 8px;
   padding: 0.4rem 1.5rem;
+  cursor: pointer;
 }
