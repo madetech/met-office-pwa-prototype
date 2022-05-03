@@ -90,6 +90,7 @@ const Header = () => {
       />
       <link rel="manifest" href="/manifest.json" />
       <link rel="shortcut icon" href="/favicon.ico" />
+      <title>Met Office Demo</title>
     </Head>
   );
 };
