@@ -1,7 +1,7 @@
 .navContainer {
   position: sticky;
   top: 0;
-  background-color: #1b4462;
+  background-image: linear-gradient(#122a3a, #1b4462);
   z-index: 1;
   padding: 0 0.5rem;
 }
