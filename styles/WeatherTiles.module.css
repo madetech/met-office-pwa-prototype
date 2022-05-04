@@ -1,0 +1,14 @@
+.scrollIconContainer {
+  display: flex;
+  justify-content: end;
+  padding: 5px 0px 0px 0px;
+}
+
+.iconActive {
+  color: #0078a5;
+  cursor: pointer;
+}
+
+.iconDisabled {
+  color: #555;
+}

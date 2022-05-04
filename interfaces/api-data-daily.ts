@@ -29,3 +29,7 @@ export interface DailyData {
   features: Feature[];
   type: string;
 }
+
+export interface DailyDataLastUpdated extends DailyData {
+  lastUpdated: string;
+}
