@@ -6,11 +6,10 @@ import {
 } from '../interfaces/api-data-hourly';
 import { DailyData, DailyDataLastUpdated } from '../interfaces/api-data-daily';
 import { DraggableTile } from './DraggableTile';
-import { Timeslot } from './Timeslot';
-import { Dayslot } from './Dayslot';
 import styles from '../styles/Forecast.module.css';
 import { Timestamp } from './Timestamp';
 import { ImCompass } from 'react-icons/im';
+import { WeatherTiles } from './WeatherTiles';
 
 const degreesSymbol = String.fromCharCode(176);
 
@@ -153,19 +152,12 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
         </button>
       </div>
 
-      {isHourlyData ? (
-        <section className={styles.timeslots}>
-          {forecasts.map((forecast) => {
-            return <Timeslot forecast={forecast} key={forecast.time} />;
-          })}
-        </section>
-      ) : (
-        <section className={styles.timeslots}>
-          {dailyForecasts.map((forecast) => {
-            return <Dayslot forecast={forecast} key={forecast.time} />;
-          })}
-        </section>
-      )}
+      <WeatherTiles
+        dailyForecasts={dailyForecasts}
+        forecasts={forecasts}
+        isHourlyData={isHourlyData}
+      />
+
       <Timestamp
         lastUpdatedTime={lastUpdatedTime}
         fetchingData={fetchingData}
