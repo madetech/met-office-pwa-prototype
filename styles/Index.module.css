@@ -9,3 +9,9 @@
   max-width: 1080px;
   margin: 0 auto;
 }
+
+@media screen and (min-width: 1024px) {
+  .contentContainer {
+    padding-bottom: 3rem;
+  }
+}
