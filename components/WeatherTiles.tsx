@@ -5,11 +5,8 @@ import timeslotStyles from '../styles/Forecast.module.css';
 import styles from '../styles/WeatherTiles.module.css';
 import { Dayslot } from './Dayslot';
 import { Timeslot } from './Timeslot';
-import {
-  FaGripLinesVertical,
-  FaChevronRight,
-  FaChevronLeft,
-} from 'react-icons/fa';
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import Link from 'next/link';
 
 const checkToDisableIcons = (
   element: HTMLElement,
@@ -124,10 +121,22 @@ export const WeatherTiles = ({
               return <Dayslot forecast={forecast} key={forecast.time} />;
             })}
       </section>
-      <div className={styles.scrollIconContainer}>
-        <FaChevronLeft onClick={scrollLeft} className={leftIconClass} />
-        <FaGripLinesVertical className={styles.iconDisabled} />
-        <FaChevronRight onClick={scrollRight} className={rightIconClass} />
+      <div className={styles.underForecastContainer}>
+        <Link href="#">
+          {<p className={styles.link}>View full forecast</p>}
+        </Link>
+
+        <div className={styles.scrollIconContainer}>
+          <button onClick={scrollLeft} className={leftIconClass}>
+            <FaChevronLeft className={styles.iconLeft} />
+            <p>Earlier</p>
+          </button>
+
+          <button onClick={scrollRight} className={rightIconClass}>
+            <p>Later</p>
+            <FaChevronRight className={styles.iconRight} />
+          </button>
+        </div>
       </div>
     </>
   );
