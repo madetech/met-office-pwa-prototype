@@ -8,6 +8,7 @@ import { Location } from './Location';
 import styles from '../styles/Index.module.css';
 import { Video } from './Video';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
+import { Footer } from './Footer';
 
 interface IndexProps {
   lastKnownLocationData?: HourlyDataLastUpdated;
@@ -36,6 +37,7 @@ export const Index = ({
         <Forecast data={data} isUserLocation={false} />
         <Video videoData={videoData} />
       </main>
+      <Footer />
     </div>
   );
 };
