@@ -44,7 +44,7 @@ export const getServerSideProps = async ({ req }: NextPageContext) => {
       getForecastData('hourly', cambridge[0], cambridge[1]),
       locationLat && locationLon
         ? getForecastData('hourly', locationLat, locationLon)
-        : Promise.resolve(undefined),
+        : Promise.resolve(null),
       getLatestVideoData(),
     ]
   );
