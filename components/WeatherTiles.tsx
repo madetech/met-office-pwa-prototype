@@ -129,11 +129,11 @@ export const WeatherTiles = ({
         <div className={styles.scrollIconContainer}>
           <button onClick={scrollLeft} className={leftIconClass}>
             <FaChevronLeft className={styles.iconLeft} />
-            <p>Earlier</p>
+            Earlier
           </button>
 
           <button onClick={scrollRight} className={rightIconClass}>
-            <p>Later</p>
+            Later
             <FaChevronRight className={styles.iconRight} />
           </button>
         </div>
