@@ -60,3 +60,15 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+@media screen and (min-width: 800px) {
+  .iconActive,
+  .iconDisabled {
+    font-size: inherit;
+  }
+
+  .iconLeft,
+  .iconRight {
+    top: 15px;
+  }
+}
