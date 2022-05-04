@@ -60,7 +60,7 @@ export const Video = ({ videoData }: VideoProps) => {
 
   return (
     <DraggableTile>
-      <h2>UK Video Forecast</h2>
+      <h2>UK video forecast</h2>
       <div className={styles.videoContainer}>
         <ReactPlayer
           url={`https://www.youtube.com/watch?v=${videoData.items[0].snippet.resourceId.videoId}`}
