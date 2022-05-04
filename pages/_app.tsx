@@ -1,14 +1,8 @@
 import App, { AppContext, AppProps } from 'next/app';
 import '../styles/globals.css';
 import Cookies from 'universal-cookie';
-import {
-  LOCATION_COOKIE_LAT,
-  LOCATION_COOKIE_LON,
-  LOG_IN_COOKIE_KEY,
-} from '../constants';
+import { LOG_IN_COOKIE_KEY } from '../constants';
 import Head from 'next/head';
-import { HourlyData } from '../interfaces/api-data-hourly';
-import getForecastData from '../requests/getForecastData';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

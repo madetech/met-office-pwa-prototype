@@ -3,13 +3,12 @@ import { HourlyDataLastUpdated } from '../interfaces/api-data-hourly';
 import { Index } from '../components';
 import { getLatestVideoData } from '../requests/getLatestVideoData';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
-import { NextApiRequest, NextPageContext } from 'next';
-import { NextServer } from 'next/dist/server/next';
+import { NextPageContext } from 'next';
 import Cookies from 'universal-cookie';
 import { LOCATION_COOKIE_LAT, LOCATION_COOKIE_LON } from '../constants';
 interface HomeProps {
   hasReadPermission: boolean;
-  lastKnownLocationData?: HourlyDataLastUpdated;
+  lastKnownLocationData: HourlyDataLastUpdated | null;
   data: HourlyDataLastUpdated;
   videoData: YoutubePlaylistApiResponse;
 }
