@@ -46,6 +46,7 @@
   border: 0;
   cursor: pointer;
   flex-basis: 40%;
+  margin: 0;
 }
 
 .btnActive {
