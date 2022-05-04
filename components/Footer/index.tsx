@@ -5,8 +5,8 @@ import { BsExclamationTriangle } from 'react-icons/bs';
 
 export const Footer = () => {
   return (
-    <footer className={styles.footerContainer}>
-      <div className={styles.footerWrapper}>
+    <footer>
+      <div className={styles.footerContainer}>
         <div className={styles.footerIcons}>
           <div className={`${styles.footerIcon} ${styles.footerFirstIcon}`}>
             <TiWeatherPartlySunny />

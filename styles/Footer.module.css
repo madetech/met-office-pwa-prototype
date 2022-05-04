@@ -1,14 +1,12 @@
 .footerContainer {
-  position: sticky;
+  display: flex;
+  padding-top: 0.25rem;
+  position: fixed;
   bottom: 0;
   background-color: #f6f6f6;
-  z-index: 1;
-  height: 36px;
-}
-
-.footerWrapper {
   width: 100%;
-  padding-top: 0.25rem;
+  max-width: 1080px;
+  z-index: 1000;
 }
 
 .footerIcons {
