@@ -10,7 +10,6 @@ export const Search = () => {
         </label>
         <div className={styles.inputs}>
           <input type="text" id="searchLocation" />
-          {/* <input type="submit" value="Search" /> */}
           <button>Search</button>
         </div>
       </form>
