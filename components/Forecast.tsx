@@ -25,13 +25,6 @@ const formatLongitude = (longitude: number) => {
     : `${(longitude * -1).toFixed(2)}${degreesSymbol}W`;
 };
 
-const currentTimeMinusOneHour = () => {
-  const currentTimeMinusOneHour = new Date(Date.now());
-  currentTimeMinusOneHour.setMinutes(1);
-  currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
-  return currentTimeMinusOneHour;
-};
-
 interface ForecastProps {
   data: HourlyDataLastUpdated;
   isUserLocation: boolean;
@@ -51,6 +44,10 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
       }, 1000);
     }
   }, [fetchingData]);
+
+  const currentTimeMinusOneHour = new Date(Date.now());
+  currentTimeMinusOneHour.setMinutes(1);
+  currentTimeMinusOneHour.setHours(currentTimeMinusOneHour.getHours() - 1);
 
   const coords = forecastData.features[0].geometry.coordinates;
   const long = formatLongitude(coords[0]);
@@ -105,7 +102,7 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
 
   const forecasts = forecastData.features[0].properties.timeSeries
     .filter((forecast) => {
-      if (Number(new Date(forecast.time)) < Number(currentTimeMinusOneHour())) {
+      if (Number(new Date(forecast.time)) < Number(currentTimeMinusOneHour)) {
         return false;
       }
       return true;

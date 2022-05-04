@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { HourlyData } from '../interfaces/api-data-hourly';
+import { HourlyDataLastUpdated } from '../interfaces/api-data-hourly';
 import { Forecast } from './Forecast';
 
 const degreesSymbol = String.fromCharCode(176);
 
 describe('forecast', () => {
   it('should display forecast data place name', () => {
-    render(<Forecast data={hourlyData} />);
+    render(<Forecast data={hourlyData} isUserLocation={true} />);
 
     const placeName = screen.getByText(
       hourlyData.features[0].properties.location.name
@@ -16,7 +16,7 @@ describe('forecast', () => {
   });
 
   it("should display the forecast data's latitude and longitude", () => {
-    render(<Forecast data={hourlyData} />);
+    render(<Forecast data={hourlyData} isUserLocation={true} />);
 
     const expectedLatitude = `50.21${degreesSymbol}N`;
     const expectedLongitude = `5.48${degreesSymbol}W`;
@@ -33,7 +33,7 @@ describe('forecast', () => {
       .spyOn(global.Date, 'now')
       .mockImplementationOnce(() => new Date('2022-04-25T11:00Z').valueOf());
 
-    render(<Forecast data={hourlyData} />);
+    render(<Forecast data={hourlyData} isUserLocation={true} />);
 
     const timeslots = screen.getAllByTestId('timeslot');
 
@@ -45,7 +45,7 @@ describe('forecast', () => {
       .spyOn(global.Date, 'now')
       .mockImplementationOnce(() => new Date('2022-04-25T13:00Z').valueOf());
 
-    render(<Forecast data={hourlyData} />);
+    render(<Forecast data={hourlyData} isUserLocation={true} />);
 
     const filterOudTime = screen.queryByText('12:00');
 
@@ -57,16 +57,17 @@ describe('forecast', () => {
       .spyOn(global.Date, 'now')
       .mockImplementationOnce(() => new Date('2022-04-25T12:01Z').valueOf());
 
-    render(<Forecast data={hourlyData} />);
+    render(<Forecast data={hourlyData} isUserLocation={true} />);
 
-    const filterOudTime = screen.queryByText('12:00');
+    const filterOudTime = screen.getByText('12:00');
 
     expect(filterOudTime).toBeInTheDocument();
   });
 });
 
-const hourlyData: HourlyData = {
+const hourlyData: HourlyDataLastUpdated = {
   type: 'FeatureCollection',
+  lastUpdated: '2022-04-25T12:00Z',
   features: [
     {
       type: 'Feature',
