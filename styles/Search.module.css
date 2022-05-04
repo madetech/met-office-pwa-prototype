@@ -32,9 +32,12 @@
   outline: 1px solid #555;
 }
 
-.search input[type='submit'] {
+.search button {
   background-color: #0078a5;
   color: white;
+  border-radius: 2px;
+  border: 0;
+  padding: 8px;
   flex-basis: 25%;
   max-width: 100px;
 }
@@ -44,7 +47,7 @@
     justify-content: flex-start;
   }
 
-  .search input[type='submit'] {
+  .search button {
     font-size: inherit;
     padding: 1rem 1.5rem;
     max-width: inherit;
