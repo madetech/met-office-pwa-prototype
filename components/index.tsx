@@ -10,7 +10,7 @@ import { Video } from './Video';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 
 interface IndexProps {
-  lastKnownLocationData?: HourlyDataLastUpdated;
+  lastKnownLocationData: HourlyDataLastUpdated | null;
   data: HourlyDataLastUpdated;
   hasReadPermission: boolean;
   videoData: YoutubePlaylistApiResponse;

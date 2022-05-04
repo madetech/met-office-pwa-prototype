@@ -33,27 +33,6 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     appProps.pageProps.hasReadPermission = true;
   }
 
-  const locationLat = cookies.get(LOCATION_COOKIE_LAT);
-  const locationLon = cookies.get(LOCATION_COOKIE_LON);
-
-  let lastKnownLocationData: HourlyData | undefined;
-
-  if (locationLat && locationLon) {
-    const lastKnownLocationForecast = await getForecastData(
-      'hourly',
-      locationLat,
-      locationLon
-    );
-    lastKnownLocationData = lastKnownLocationForecast.data;
-  }
-
-  appProps.pageProps.lastKnownLocationData = lastKnownLocationData
-    ? {
-        ...lastKnownLocationData,
-        lastUpdated: new Date().toISOString(),
-      }
-    : undefined;
-
   return { ...appProps };
 };
 
