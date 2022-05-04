@@ -1,14 +1,67 @@
-.scrollIconContainer {
+.underForecastContainer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 5px 0px 0px 0px;
 }
 
-.iconActive {
-  color: #0078a5;
-  cursor: pointer;
+.scrollIconContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .iconDisabled {
-  color: #555;
+  border: 2px solid #0078a5;
+  color: #0078a5;
+  border-radius: 4px;
+  padding: 0.8rem 1.6rem;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  position: relative;
+  font-size: 1rem;
+  width: 100px;
+  margin-left: 5px;
+}
+
+.iconActive {
+  border: 2px solid #0078a5;
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  height: 100%;
+  background-color: #0078a5;
+  display: flex;
+  position: relative;
+  font-size: 1rem;
+  width: 100px;
+  margin-left: 5px;
+}
+
+.iconActive p {
+  margin: 0;
+}
+
+.iconDisabled p {
+  margin: 0;
+}
+
+.iconLeft {
+  position: absolute;
+  top: 14px;
+  left: 5px;
+}
+
+.iconRight {
+  position: absolute;
+  top: 14px;
+  right: 5px;
+}
+
+.link {
+  margin: 0px;
+  font-size: 1rem;
+  color: #0078a5;
+  text-decoration: underline;
+  cursor: pointer;
 }
