@@ -9,22 +9,19 @@
   z-index: 1000;
 }
 
-.footerIcons {
+.footerIcon {
   float: left;
   text-align: center;
-  cursor: pointer;
   width: 33%;
-}
-
-.footerFirstIcon {
-  color: #0078a5;
-}
-
-.footerIcon {
   cursor: pointer;
 }
 
 .footerIcon div {
   font-size: x-small;
   text-justify: auto;
+  padding-bottom: 0.1rem;
+}
+
+.footerFirstIcon {
+  color: #0078a5;
 }
