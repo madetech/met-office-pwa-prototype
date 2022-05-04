@@ -3,12 +3,12 @@
   bottom: 0;
   background-color: #f6f6f6;
   z-index: 1;
+  height: 36px;
 }
 
 .footerWrapper {
-  height: 32px;
   width: 100%;
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 .footerIcons {
@@ -18,6 +18,15 @@
   width: 33%;
 }
 
+.footerFirstIcon {
+  color: #0078a5;
+}
+
 .footerIcon {
   cursor: pointer;
+}
+
+.footerIcon div {
+  font-size: x-small;
+  text-justify: auto;
 }
