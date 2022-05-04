@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { YoutubePlaylistApiResponse } from '../interfaces/youtube-api';
 import styles from '../styles/Video.module.css';
 import { DraggableTile } from './DraggableTile';
 import dynamic from 'next/dynamic';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 interface VideoProps {
   videoData: YoutubePlaylistApiResponse;
