@@ -19,8 +19,8 @@ a {
 .tile {
   background-color: white;
   padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #555;
+  margin-bottom: 0.5rem;
+  border: none;
   border-radius: 10px;
 }
 
