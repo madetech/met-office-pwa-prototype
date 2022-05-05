@@ -1,14 +1,8 @@
 import App, { AppContext, AppProps } from 'next/app';
 import '../styles/globals.css';
 import Cookies from 'universal-cookie';
-import {
-  LOCATION_COOKIE_LAT,
-  LOCATION_COOKIE_LON,
-  LOG_IN_COOKIE_KEY,
-} from '../constants';
+import { LOG_IN_COOKIE_KEY } from '../constants';
 import Head from 'next/head';
-import { HourlyData } from '../interfaces/api-data-hourly';
-import getForecastData from '../requests/getForecastData';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -33,27 +27,6 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     appProps.pageProps.hasReadPermission = true;
   }
 
-  const locationLat = cookies.get(LOCATION_COOKIE_LAT);
-  const locationLon = cookies.get(LOCATION_COOKIE_LON);
-
-  let lastKnownLocationData: HourlyData | undefined;
-
-  if (locationLat && locationLon) {
-    const lastKnownLocationForecast = await getForecastData(
-      'hourly',
-      locationLat,
-      locationLon
-    );
-    lastKnownLocationData = lastKnownLocationForecast.data;
-  }
-
-  appProps.pageProps.lastKnownLocationData = lastKnownLocationData
-    ? {
-        ...lastKnownLocationData,
-        lastUpdated: new Date().toISOString(),
-      }
-    : undefined;
-
   return { ...appProps };
 };
 
@@ -74,7 +47,11 @@ const Header = () => {
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="msapplication-TileColor" content="#2B5797" />
       <meta name="msapplication-tap-highlight" content="no" />
-      <meta name="theme-color" content="#000000" />
+      <meta name="theme-color" content="#122a3a" />
+      <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+      />
 
       <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
       <link

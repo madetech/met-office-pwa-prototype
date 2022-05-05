@@ -8,11 +8,11 @@ import Cookies from 'universal-cookie';
 import { LOCATION_COOKIE_LAT, LOCATION_COOKIE_LON } from '../../constants';
 
 interface LocationProps {
-  lastKnownLocationData?: HourlyDataLastUpdated;
+  lastKnownLocationData: HourlyDataLastUpdated | null;
 }
 
 export const Location = ({ lastKnownLocationData }: LocationProps) => {
-  const [data, setData] = useState<HourlyDataLastUpdated | undefined>(
+  const [data, setData] = useState<HourlyDataLastUpdated | null>(
     lastKnownLocationData
   );
 

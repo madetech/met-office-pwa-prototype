@@ -1,17 +1,15 @@
 import React from 'react';
 import { ComponentStory } from '@storybook/react';
 
-import { Location } from '../components/Location';
+import { Footer } from '../components/Footer';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  component: Location,
-  title: 'Location',
+  component: Footer,
+  title: 'Footer',
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Location> = () => (
-  <Location lastKnownLocationData={null} />
-);
-
-export const Default = Template.bind({});
+const Template: ComponentStory<typeof Footer> = () => <Footer />;
+export const Main = Template.bind({});
+Template.args = {};

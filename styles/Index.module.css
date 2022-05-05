@@ -1,5 +1,5 @@
 .contentContainer {
-  padding: 0 0.5rem 0.5rem 0.5rem;
+  padding: 0 0.5rem 2.25rem 0.5rem;
 }
 
 .pageContainer {
@@ -19,5 +19,9 @@
 @media screen and (min-width: 800px) {
   .contentContainer {
     padding: 0 1.5rem 1.5rem 1.5rem;
+
+@media screen and (min-width: 1024px) {
+  .contentContainer {
+    padding-bottom: 3rem;
   }
 }
