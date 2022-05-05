@@ -1,5 +1,5 @@
 .contentContainer {
-  padding: 0 0.5rem 0.5rem 0.5rem;
+  padding: 0 0.5rem 2.25rem 0.5rem;
 }
 
 .pageContainer {
@@ -8,4 +8,10 @@
   height: 100%;
   max-width: 1080px;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .contentContainer {
+    padding-bottom: 3rem;
+  }
 }
