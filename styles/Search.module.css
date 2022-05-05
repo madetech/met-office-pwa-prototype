@@ -25,7 +25,6 @@
 
 .search input[type='text'] {
   flex-basis: 75%;
-  max-width: 600px;
   padding-left: 15px;
 }
 
@@ -41,7 +40,6 @@
   margin: 0;
   padding: 8px;
   flex-basis: 25%;
-  /* max-width: 100px; */
 }
 
 @media screen and (min-width: 600px) {
@@ -51,13 +49,8 @@
 }
 
 @media screen and (min-width: 800px) {
-  .inputs {
-    justify-content: flex-start;
-  }
-
   .search input[type='text'] {
     flex-basis: 80%;
-    max-width: 700px;
   }
 
   .search button {

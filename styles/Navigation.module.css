@@ -3,12 +3,12 @@
   top: 0;
   background-image: linear-gradient(#122a3a, #1b4462);
   z-index: 1;
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
 }
 
 .elementContainer {
   display: flex;
-  padding: 0% 5%;
+  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -32,4 +32,10 @@
   border-radius: 8px;
   padding: 0.4rem 1.5rem;
   cursor: pointer;
+}
+
+@media screen and (min-width: 800px) {
+  .elementContainer {
+    padding: 0 1.5rem;
+  }
 }
