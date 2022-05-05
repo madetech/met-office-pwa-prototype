@@ -76,11 +76,11 @@
 @media screen and (min-width: 800px) {
   .iconActive,
   .iconDisabled {
-    font-size: inherit;
+    font-size: 90%;
   }
 
   .iconLeft,
   .iconRight {
-    top: 15px;
+    top: 13px;
   }
 }

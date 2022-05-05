@@ -56,10 +56,11 @@
   }
 
   .search input[type='text'] {
-    flex-basis: 85%;
+    flex-basis: 80%;
+    max-width: 700px;
   }
 
   .search button {
-    flex-basis: 15%;
+    flex-basis: 20%;
   }
 }
