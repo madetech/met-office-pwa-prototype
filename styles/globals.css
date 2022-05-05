@@ -38,9 +38,23 @@ a {
   --primary-button: #0078a5; /* Colour grabbed from Dawn's wireframe */
 }
 
+@media screen and (min-width: 600px) {
+  body {
+    font-size: 110%;
+  }
+
+  .tile {
+    margin-bottom: 1rem;
+  }
+
+  .tile h2 {
+    font-size: 120%;
+  }
+}
+
 @media screen and (min-width: 800px) {
   body {
-    font-size: 140%;
+    font-size: 110%;
   }
 
   .tile {

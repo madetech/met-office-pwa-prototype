@@ -55,9 +55,16 @@
   font-weight: bold;
 }
 
-@media screen and (min-width: 429px) {
+@media screen and (min-width: 600px) {
   .btn,
   .refresh {
-    font-size: inherit;
+    font-size: 90%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .btn,
+  .refresh {
+    font-size: 100%;
   }
 }
