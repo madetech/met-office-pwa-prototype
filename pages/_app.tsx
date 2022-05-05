@@ -47,7 +47,7 @@ const Header = () => {
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="msapplication-TileColor" content="#2B5797" />
       <meta name="msapplication-tap-highlight" content="no" />
-      <meta name="theme-color" content="#000000" />
+      <meta name="theme-color" content="#122a3a" />
 
       <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
       <link
