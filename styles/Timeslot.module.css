@@ -39,7 +39,7 @@
 
 @media screen and (min-width: 800px) {
   .timeslot {
-    min-width: 135px;
+    min-width: 122px;
   }
 
   .timeslot img {
@@ -49,7 +49,7 @@
 
 @media screen and (min-width: 1000px) {
   .timeslot {
-    min-width: 145px;
+    min-width: 130px;
     padding-right: 1.5rem;
   }
 }
