@@ -1,6 +1,6 @@
 .footerContainer {
   display: flex;
-  padding: 0.25rem 0;
+  padding: 0.25rem 0 0.5rem 0;
   position: fixed;
   bottom: 0;
   background-color: #f6f6f6;
@@ -26,8 +26,8 @@
   color: #0078a5;
 }
 
-@supports (padding: max(0px)) {
+@supports (padding-bottom: max(0.5rem)) {
   .footerContainer {
-    padding-bottom: max(0.25rem, env(safe-area-inset-bottom));
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
   }
 }
