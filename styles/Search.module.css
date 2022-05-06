@@ -18,14 +18,14 @@
 
 .search input {
   border: 1px solid #888;
-  border-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
   padding: 8px;
   margin: 0;
 }
 
 .search input[type='text'] {
   flex-basis: 75%;
-  max-width: 400px;
   padding-left: 15px;
 }
 
@@ -36,22 +36,26 @@
 .search button {
   background-color: #0078a5;
   color: white;
-  border-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
   border: 0;
   margin: 0;
   padding: 8px;
   flex-basis: 25%;
-  max-width: 100px;
 }
 
-@media screen and (min-width: 429px) {
-  .inputs {
-    justify-content: flex-start;
+@media screen and (min-width: 600px) {
+  .search button {
+    font-size: 90%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .search input[type='text'] {
+    flex-basis: 80%;
   }
 
   .search button {
-    font-size: inherit;
-    padding: 1rem 1.5rem;
-    max-width: inherit;
+    flex-basis: 20%;
   }
 }

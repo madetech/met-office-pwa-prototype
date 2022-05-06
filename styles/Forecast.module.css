@@ -22,6 +22,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
+  margin-right: -1rem;
 }
 
 .refresh {
@@ -55,9 +56,9 @@
   font-weight: bold;
 }
 
-@media screen and (min-width: 429px) {
+@media screen and (min-width: 600px) {
   .btn,
   .refresh {
-    font-size: inherit;
+    font-size: 90%;
   }
 }

@@ -61,14 +61,26 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
   .iconActive,
   .iconDisabled {
-    font-size: inherit;
+    font-size: 90%;
   }
 
   .iconLeft,
   .iconRight {
-    top: 15px;
+    top: 12px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .iconActive,
+  .iconDisabled {
+    font-size: 90%;
+  }
+
+  .iconLeft,
+  .iconRight {
+    top: 13px;
   }
 }

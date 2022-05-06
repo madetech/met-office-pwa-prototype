@@ -26,7 +26,7 @@
   }
 }
 
-@media screen and (min-width: 429px) {
+@media screen and (min-width: 600px) {
   .timeslot {
     min-width: 100px;
     padding-right: 1.3rem;
@@ -34,5 +34,23 @@
 
   .timeslot p {
     padding: 0.5rem 0;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .timeslot {
+    min-width: 135px;
+    /* padding-right: 1.5rem; */
+  }
+
+  .timeslot img {
+    width: 45px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .timeslot {
+    min-width: 145px;
+    padding-right: 1.5rem;
   }
 }
