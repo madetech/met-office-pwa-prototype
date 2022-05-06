@@ -8,24 +8,19 @@ import { Timeslot } from './Timeslot';
 import { ScrollIcons } from './ScrollIcons';
 import { Timestamp } from './Timestamp';
 
-const checkToDisableIcons = (
-  element: HTMLElement,
-  left: boolean,
-  distance: number
-) => {
+const checkToDisableIcons = (element: HTMLElement, left: boolean) => {
   const totalWidth = element.scrollWidth;
   const viewableWidth = element.clientWidth;
   const xPositionLeft = element.scrollLeft;
+  const newXPosition = xPositionLeft;
 
   if (left) {
-    const newXPosition = xPositionLeft - distance;
     return {
       leftDisabled: Math.max(0, newXPosition) === 0,
       rightDisabled:
         Math.min(totalWidth, newXPosition + viewableWidth) === totalWidth,
     };
   } else {
-    const newXPosition = xPositionLeft + distance;
     return {
       leftDisabled: Math.max(0, newXPosition) === 0,
       rightDisabled:
@@ -38,7 +33,7 @@ const sideScroll = (element: HTMLElement, left: boolean) => {
   const totalWidth = element.scrollWidth;
   const viewableWidth = element.clientWidth;
   const xPositionLeft = element.scrollLeft;
-  const distance = viewableWidth * 0.66;
+  const distance = viewableWidth * 0.7;
 
   if (left) {
     element.scrollTo({
@@ -51,7 +46,6 @@ const sideScroll = (element: HTMLElement, left: boolean) => {
       left: Math.min(totalWidth, xPositionLeft + distance),
     });
   }
-  return checkToDisableIcons(element, left, distance);
 };
 
 interface WeatherTilesProps {
@@ -71,15 +65,14 @@ export const WeatherTiles = ({
   fetchingData,
   weatherTileSectionRef,
 }: WeatherTilesProps) => {
-  const [leftDisabled, setLeftDisabled] = useState(false);
+  const [leftDisabled, setLeftDisabled] = useState(true);
   const [rightDisabled, setRightDisabled] = useState(false);
 
   useEffect(() => {
     if (weatherTileSectionRef.current) {
       const disabledOnLoad = checkToDisableIcons(
         weatherTileSectionRef.current,
-        true,
-        0
+        true
       );
       setLeftDisabled(disabledOnLoad.leftDisabled);
       setRightDisabled(disabledOnLoad.rightDisabled);
@@ -88,20 +81,21 @@ export const WeatherTiles = ({
 
   const scrollLeft = () => {
     if (weatherTileSectionRef.current) {
-      const { leftDisabled: left, rightDisabled: right } = sideScroll(
-        weatherTileSectionRef.current,
-        true
-      );
-      setLeftDisabled(left);
-      setRightDisabled(right);
+      sideScroll(weatherTileSectionRef.current, true);
     }
   };
 
   const scrollRight = () => {
     if (weatherTileSectionRef.current) {
-      const { leftDisabled: left, rightDisabled: right } = sideScroll(
+      sideScroll(weatherTileSectionRef.current, false);
+    }
+  };
+
+  const scrollTiles = () => {
+    if (weatherTileSectionRef.current) {
+      const { leftDisabled: left, rightDisabled: right } = checkToDisableIcons(
         weatherTileSectionRef.current,
-        false
+        true
       );
 
       setLeftDisabled(left);
@@ -117,7 +111,11 @@ export const WeatherTiles = ({
 
   return (
     <>
-      <section className={timeslotStyles.timeslots} ref={weatherTileSectionRef}>
+      <section
+        className={timeslotStyles.timeslots}
+        ref={weatherTileSectionRef}
+        onScroll={scrollTiles}
+      >
         {isHourlyData
           ? forecasts.map((forecast) => {
               return <Timeslot forecast={forecast} key={forecast.time} />;
