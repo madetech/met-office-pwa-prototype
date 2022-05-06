@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DailyForecast } from '../interfaces/api-data-daily';
 import { Forecast } from '../interfaces/api-data-hourly';
 import timeslotStyles from '../styles/Forecast.module.css';
