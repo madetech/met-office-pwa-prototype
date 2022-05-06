@@ -20,3 +20,26 @@
   color: white;
   display: none;
 }
+
+button.fullscreenClose {
+  /* position: absolute; */
+  display: flex;
+  top: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  /* width: 200px; */
+  padding: 0.6em 1.6em;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1002;
+  font-size: '1.5rem';
+}
+
+button.fullscreenClose:hover,
+button.fullscreenClose:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
