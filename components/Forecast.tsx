@@ -153,9 +153,6 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
         dailyForecasts={dailyForecasts}
         forecasts={forecasts}
         isHourlyData={isHourlyData}
-      />
-
-      <Timestamp
         lastUpdatedTime={lastUpdatedTime}
         fetchingData={fetchingData}
       />

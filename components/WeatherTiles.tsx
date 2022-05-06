@@ -7,6 +7,8 @@ import { Dayslot } from './Dayslot';
 import { Timeslot } from './Timeslot';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import Link from 'next/link';
+import { ScrollIcons } from './ScrollIcons';
+import { Timestamp } from './Timestamp';
 
 const checkToDisableIcons = (
   element: HTMLElement,
@@ -58,12 +60,16 @@ interface WeatherTilesProps {
   isHourlyData: boolean;
   forecasts: Forecast[];
   dailyForecasts: DailyForecast[];
+  lastUpdatedTime: string;
+  fetchingData: boolean;
 }
 
 export const WeatherTiles = ({
   isHourlyData,
   forecasts,
   dailyForecasts,
+  lastUpdatedTime,
+  fetchingData,
 }: WeatherTilesProps) => {
   const titleSectionRef = useRef<HTMLElement>(null);
   const [leftDisabled, setLeftDisabled] = useState(false);
@@ -121,7 +127,7 @@ export const WeatherTiles = ({
               return <Dayslot forecast={forecast} key={forecast.time} />;
             })}
       </section>
-      <div className={styles.underForecastContainer}>
+      {/* <div className={styles.underForecastContainer}>
         <Link href="#">
           {<p className={styles.link}>View full forecast</p>}
         </Link>
@@ -137,7 +143,17 @@ export const WeatherTiles = ({
             <FaChevronRight className={styles.iconRight} />
           </button>
         </div>
-      </div>
+      </div> */}
+      <ScrollIcons
+        scrollLeft={scrollLeft}
+        scrollRight={scrollRight}
+        leftIconClass={leftIconClass}
+        rightIconClass={rightIconClass}
+      />
+      <Timestamp
+        lastUpdatedTime={lastUpdatedTime}
+        fetchingData={fetchingData}
+      />
     </>
   );
 };
