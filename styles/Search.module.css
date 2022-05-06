@@ -19,7 +19,9 @@
 .search input {
   border: 1px solid #888;
   border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 0;
   border-top-left-radius: 2px;
+  border-top-right-radius: 0;
   padding: 8px;
   margin: 0;
 }
@@ -37,7 +39,9 @@
   background-color: #0078a5;
   color: white;
   border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 0;
   border-top-right-radius: 2px;
+  border-top-left-radius: 0;
   border: 0;
   margin: 0;
   padding: 8px;

@@ -9,8 +9,8 @@ export const Search = () => {
           <span>eg. Town, City, Postcode.</span>
         </label>
         <div className={styles.inputs}>
-          <input type="text" id="searchLocation" />
-          <button>Search</button>
+          <input type="text" id="searchLocation" disabled />
+          <button disabled>Search</button>
         </div>
       </form>
     </section>
