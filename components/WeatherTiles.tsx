@@ -5,8 +5,6 @@ import timeslotStyles from '../styles/Forecast.module.css';
 import styles from '../styles/WeatherTiles.module.css';
 import { Dayslot } from './Dayslot';
 import { Timeslot } from './Timeslot';
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
-import Link from 'next/link';
 import { ScrollIcons } from './ScrollIcons';
 import { Timestamp } from './Timestamp';
 
@@ -127,32 +125,15 @@ export const WeatherTiles = ({
               return <Dayslot forecast={forecast} key={forecast.time} />;
             })}
       </section>
-      {/* <div className={styles.underForecastContainer}>
-        <Link href="#">
-          {<p className={styles.link}>View full forecast</p>}
-        </Link>
-
-        <div className={styles.scrollIconContainer}>
-          <button onClick={scrollLeft} className={leftIconClass}>
-            <FaChevronLeft className={styles.iconLeft} />
-            Earlier
-          </button>
-
-          <button onClick={scrollRight} className={rightIconClass}>
-            Later
-            <FaChevronRight className={styles.iconRight} />
-          </button>
-        </div>
-      </div> */}
+      <Timestamp
+        lastUpdatedTime={lastUpdatedTime}
+        fetchingData={fetchingData}
+      />
       <ScrollIcons
         scrollLeft={scrollLeft}
         scrollRight={scrollRight}
         leftIconClass={leftIconClass}
         rightIconClass={rightIconClass}
-      />
-      <Timestamp
-        lastUpdatedTime={lastUpdatedTime}
-        fetchingData={fetchingData}
       />
     </>
   );
