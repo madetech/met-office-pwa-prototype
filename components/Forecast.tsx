@@ -7,7 +7,6 @@ import {
 import { DailyData, DailyDataLastUpdated } from '../interfaces/api-data-daily';
 import { DraggableTile } from './DraggableTile';
 import styles from '../styles/Forecast.module.css';
-import { Timestamp } from './Timestamp';
 import { ImCompass } from 'react-icons/im';
 import { WeatherTiles } from './WeatherTiles';
 
@@ -153,9 +152,6 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
         dailyForecasts={dailyForecasts}
         forecasts={forecasts}
         isHourlyData={isHourlyData}
-      />
-
-      <Timestamp
         lastUpdatedTime={lastUpdatedTime}
         fetchingData={fetchingData}
       />

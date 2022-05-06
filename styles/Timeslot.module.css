@@ -40,7 +40,6 @@
 @media screen and (min-width: 800px) {
   .timeslot {
     min-width: 135px;
-    /* padding-right: 1.5rem; */
   }
 
   .timeslot img {
