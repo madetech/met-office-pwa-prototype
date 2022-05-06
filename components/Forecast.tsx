@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   HourlyData,
   HourlyDataLastUpdated,
@@ -35,6 +35,8 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
     useState<DailyDataLastUpdated>();
   const [isHourlyData, setIsHourlyData] = useState<boolean>(true);
   const [fetchingData, setFetchingData] = useState(false);
+
+  const weatherTileSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (fetchingData) {
@@ -83,6 +85,7 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
     setForecastData({ ...res.data, lastUpdated: new Date().toISOString() });
 
     setIsHourlyData(true);
+    snapForecastScrollLeft();
   };
 
   const handleDailyClick = async () => {
@@ -97,6 +100,13 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
     });
 
     setIsHourlyData(false);
+    snapForecastScrollLeft();
+  };
+
+  const snapForecastScrollLeft = () => {
+    if (weatherTileSectionRef.current) {
+      weatherTileSectionRef.current.scrollTo({ left: 0 });
+    }
   };
 
   const forecasts = forecastData.features[0].properties.timeSeries
@@ -154,6 +164,7 @@ export const Forecast = ({ data, isUserLocation }: ForecastProps) => {
         isHourlyData={isHourlyData}
         lastUpdatedTime={lastUpdatedTime}
         fetchingData={fetchingData}
+        weatherTileSectionRef={weatherTileSectionRef}
       />
     </DraggableTile>
   );

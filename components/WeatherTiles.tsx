@@ -60,6 +60,7 @@ interface WeatherTilesProps {
   dailyForecasts: DailyForecast[];
   lastUpdatedTime: string;
   fetchingData: boolean;
+  weatherTileSectionRef: React.RefObject<HTMLElement>;
 }
 
 export const WeatherTiles = ({
@@ -68,27 +69,27 @@ export const WeatherTiles = ({
   dailyForecasts,
   lastUpdatedTime,
   fetchingData,
+  weatherTileSectionRef,
 }: WeatherTilesProps) => {
-  const titleSectionRef = useRef<HTMLElement>(null);
   const [leftDisabled, setLeftDisabled] = useState(false);
   const [rightDisabled, setRightDisabled] = useState(false);
 
   useEffect(() => {
-    if (titleSectionRef.current) {
+    if (weatherTileSectionRef.current) {
       const disabledOnLoad = checkToDisableIcons(
-        titleSectionRef.current,
+        weatherTileSectionRef.current,
         true,
         0
       );
       setLeftDisabled(disabledOnLoad.leftDisabled);
       setRightDisabled(disabledOnLoad.rightDisabled);
     }
-  }, [isHourlyData]);
+  }, [isHourlyData, weatherTileSectionRef]);
 
   const scrollLeft = () => {
-    if (titleSectionRef.current) {
+    if (weatherTileSectionRef.current) {
       const { leftDisabled: left, rightDisabled: right } = sideScroll(
-        titleSectionRef.current,
+        weatherTileSectionRef.current,
         true
       );
       setLeftDisabled(left);
@@ -97,9 +98,9 @@ export const WeatherTiles = ({
   };
 
   const scrollRight = () => {
-    if (titleSectionRef.current) {
+    if (weatherTileSectionRef.current) {
       const { leftDisabled: left, rightDisabled: right } = sideScroll(
-        titleSectionRef.current,
+        weatherTileSectionRef.current,
         false
       );
 
@@ -116,7 +117,7 @@ export const WeatherTiles = ({
 
   return (
     <>
-      <section className={timeslotStyles.timeslots} ref={titleSectionRef}>
+      <section className={timeslotStyles.timeslots} ref={weatherTileSectionRef}>
         {isHourlyData
           ? forecasts.map((forecast) => {
               return <Timeslot forecast={forecast} key={forecast.time} />;
