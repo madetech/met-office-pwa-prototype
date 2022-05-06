@@ -23,10 +23,6 @@ const useIsIphone = () => {
     setIsPhone(/iPhone/i.test(navigator.userAgent));
   }, []);
 
-  useEffect(() => {
-    console.log('isPhone', isPhone);
-  }, [isPhone]);
-
   return isPhone;
 };
 
