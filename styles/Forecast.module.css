@@ -22,7 +22,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  margin-right: -1rem;
+  margin: 0 -1rem;
 }
 
 .refresh {
