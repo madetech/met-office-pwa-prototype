@@ -1,7 +1,7 @@
 .navContainer {
   position: sticky;
   top: 0;
-  background-image: linear-gradient(#122a3a, #1b4462);
+  background-image: linear-gradient(#122a3a 0%, #1b4462 100%);
   z-index: 1;
 }
 
@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 600px) and (orientation: portrait) {
+@media screen and (width > 600px) and (height > 400px) {
   .elementContainer {
     margin-left: auto;
     margin-right: auto;
@@ -42,7 +42,7 @@
   }
 }
 
-@media screen and (min-width: 800px) and (orientation: portrait) {
+@media screen and (min-width: 800px) and (height > 400px) {
   .elementContainer {
     padding: 0 1.5rem;
   }
