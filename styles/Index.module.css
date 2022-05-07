@@ -11,13 +11,13 @@
   margin: 0 auto;
 }
 
-@media screen and (width > 600px) and (height > 400px) {
+@media screen and (width > 600px) and (height > 430px) {
   .contentContainer {
     padding: 0 1rem 1rem 1rem;
   }
 }
 
-@media screen and (width > 800px) and (height > 400px) {
+@media screen and (width > 800px) and (height > 430px) {
   .contentContainer {
     padding: 0 1.5rem 1.5rem 1.5rem;
   }

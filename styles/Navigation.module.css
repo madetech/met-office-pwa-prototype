@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 
-@media screen and (width > 600px) and (height > 400px) {
+@media screen and (width > 600px) and (height > 430px) {
   .elementContainer {
     margin-left: auto;
     margin-right: auto;
@@ -42,7 +42,7 @@
   }
 }
 
-@media screen and (min-width: 800px) and (height > 400px) {
+@media screen and (min-width: 800px) and (height > 430px) {
   .elementContainer {
     padding: 0 1.5rem;
   }
