@@ -3,7 +3,8 @@
 }
 
 .pageContainer {
-  background-image: linear-gradient(#1b4462, #c6bfae);
+  background-image: linear-gradient(#1b4462 0%, #c6bfae 100%);
+  background-attachment: fixed;
   min-height: 100vh;
   height: 100%;
   max-width: 1080px;
