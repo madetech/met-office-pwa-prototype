@@ -12,19 +12,18 @@ const checkToDisableIcons = (element: HTMLElement, left: boolean) => {
   const totalWidth = element.scrollWidth;
   const viewableWidth = element.clientWidth;
   const xPositionLeft = element.scrollLeft;
-  const newXPosition = xPositionLeft;
 
   if (left) {
     return {
-      leftDisabled: Math.max(0, newXPosition) === 0,
+      leftDisabled: Math.max(0, xPositionLeft) === 0,
       rightDisabled:
-        Math.min(totalWidth, newXPosition + viewableWidth) === totalWidth,
+        Math.min(totalWidth, xPositionLeft + viewableWidth) === totalWidth,
     };
   } else {
     return {
-      leftDisabled: Math.max(0, newXPosition) === 0,
+      leftDisabled: Math.max(0, xPositionLeft) === 0,
       rightDisabled:
-        Math.min(totalWidth, newXPosition + viewableWidth) === totalWidth,
+        Math.min(totalWidth, xPositionLeft + viewableWidth) === totalWidth,
     };
   }
 };
