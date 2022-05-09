@@ -44,10 +44,12 @@
 
 .btn {
   padding: 0.6em;
-  border: 0;
+  border: 2px solid #0078a5;
   cursor: pointer;
   flex-basis: 40%;
   margin: 0;
+  color: #0078a5;
+  background-color: #ffffff;
 }
 
 .btnActive {
