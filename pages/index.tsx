@@ -7,21 +7,18 @@ import { NextPageContext } from 'next';
 import Cookies from 'universal-cookie';
 import { LOCATION_COOKIE_LAT, LOCATION_COOKIE_LON } from '../constants';
 interface HomeProps {
-  hasReadPermission: boolean;
   lastKnownLocationData: HourlyDataLastUpdated | null;
   data: HourlyDataLastUpdated;
   videoData: YoutubePlaylistApiResponse;
 }
 
 export default function Home({
-  hasReadPermission,
   lastKnownLocationData,
   data,
   videoData,
 }: HomeProps) {
   return (
     <Index
-      hasReadPermission={hasReadPermission}
       lastKnownLocationData={lastKnownLocationData}
       data={data}
       videoData={videoData}
