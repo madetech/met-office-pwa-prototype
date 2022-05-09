@@ -18,7 +18,7 @@ export const ScrollIcons = ({
 }: ScrollIconsProps) => {
   return (
     <div className={styles.underForecastContainer}>
-      <Link href="#">{<p className={styles.link}>View full forecast</p>}</Link>
+      <Link href="#">{<a className={styles.link}>View full forecast</a>}</Link>
 
       <div className={styles.scrollIconContainer}>
         <button onClick={scrollLeft} className={leftIconClass}>
