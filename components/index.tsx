@@ -1,7 +1,5 @@
 import { HourlyDataLastUpdated } from '../interfaces/api-data-hourly';
 import { Navigation } from './Navigation';
-import { useRouter } from 'next/router';
-import { Login } from './login';
 import { Search } from './Search';
 import { Forecast } from './Forecast';
 import { Location } from './Location';
@@ -13,21 +11,14 @@ import { Footer } from './Footer';
 interface IndexProps {
   lastKnownLocationData: HourlyDataLastUpdated | null;
   data: HourlyDataLastUpdated;
-  hasReadPermission: boolean;
   videoData: YoutubePlaylistApiResponse;
 }
 
 export const Index = ({
-  hasReadPermission,
   data,
   lastKnownLocationData,
   videoData,
 }: IndexProps) => {
-  const router = useRouter();
-  if (!hasReadPermission) {
-    return <Login redirectPath={router.asPath} />;
-  }
-
   return (
     <div className={styles.pageContainer}>
       <Navigation />

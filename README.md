@@ -98,7 +98,5 @@ cp .env.sample .env.local
 - MET_OFFICE_API_BASE_URL - URL required to call met office API for weather data - Set in .env.local and Vercel Environment Variables
 - MET_OFFICE_API_CLIENT_ID - Client ID for calling the API - Set in .env.local and Vercel Environment
 - MET_OFFICE_API_CLIENT_SECRET - Client secret for calling the met office API - Set in .env.local and Vercel Environment
-- LOGIN_PASSWORD - Password required to access deployed website - Set in .env.local and Vercel Environment
-- REQUIRE_PASSWORD - Only require password to access webapp if value is true - Set in .env.local and Vercel Environment
 - CHROMATIC_PROJECT_TOKEN - Token to allow chromatic to pull changes from our repo for visual regression testing - Set in Github secrets
 - YOUTUBE_API_KEY - Client secret for calling the YouTube Data API (allows fetching latest uploaded video by the Met Office) - Set in .env.local and Vercel Environment
